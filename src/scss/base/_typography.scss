@@ -1,0 +1,58 @@
+// System Font Stack (Default OS fonts)
+@font-face {
+    font-family: system;
+    font-style: normal;
+    font-weight: 300;
+    src: local(".SFNSText-Light"), local(".HelveticaNeueDeskInterface-Light"), local(".LucidaGrandeUI"), local("Ubuntu Light"), local("Segoe UI Light"), local("Roboto-Light"), local("DroidSans"), local("Tahoma");
+}
+
+@font-face {
+  font-family: 'outfit';
+  src: url(/src/assets/fonts/Outfit-Thin.ttf);
+  font-weight: 100;
+}
+@font-face {
+  font-family:'outfit';
+  src: url(/src/assets/fonts/Outfit-ExtraLight.ttf);
+  font-weight: 200;
+}
+@font-face {
+  font-family:'outfit';
+  src: url(/src/assets/fonts/Outfit-Light.ttf);
+  font-weight: 300;
+}
+@font-face {
+  font-family:'outfit';
+  src: url(/src/assets/fonts/Outfit-Regular.ttf);
+  font-weight: 400;
+}
+@font-face {
+  font-family: 'outfit';
+  src: url(/src/assets/fonts/Outfit-Medium.ttf);
+  font-weight: 500;
+}
+@font-face {
+  font-family: 'outfit';
+  src: url(/src/assets/fonts/Outfit-SemiBold.ttf);
+  font-weight: 600;
+}
+@font-face {
+  font-family: 'outfit';
+  src: url(/src/assets/fonts/Outfit-Bold.ttf);
+  font-weight: 700;
+}
+@font-face {
+  font-family: 'outfit';
+  src: url(/src/assets/fonts/Outfit-ExtraBold.ttf);
+  font-weight: 800;
+}
+@font-face {
+  font-family: 'outfit';
+  src: url(/src/assets/fonts/Outfit-Black.ttf);
+  font-weight: 900;
+}
+
+
+body {
+  font-family: 'outfit';
+}

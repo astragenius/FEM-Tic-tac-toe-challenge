@@ -1,0 +1,7 @@
+node_modules
+<<<<<<< HEAD
+=======
+dist
+.vscode
+.DS_Store
+>>>>>>> webpack-1

@@ -1,0 +1,55 @@
+@use 'sass:math';
+@use 'sass:map';
+
+@function rem($number) {
+    @if unitless($number) {
+        $default-one-rem-pixel: 16;
+        @return math.div($number, $default-one-rem-pixel) * 1rem;
+    }
+
+    @error "Sorry, this '#{$number}' must have not any unit";
+}
+
+@function em($number) {
+    @if unitless($number) {
+        $default-one-rem-pixel: 16;
+        @return math.div($number, $default-one-rem-pixel) * 1em;
+    }
+
+    @error "Sorry, this '#{$number}' must have not any unit";
+}
+
+
+/* function to create Util Classes */
+@function clr($color, $shade) {
+    @if map.has-key($colors, $color, $shade) {
+        @return map.get($colors, $color, $shade);
+
+    } @else {
+        @error '$colors does not have that color!';
+    }
+}
+
+@function fs($font-size) {
+    @if map.has-key($font-sizes, $font-size) {
+        @return map.get($font-size, $font-size);
+    } @else {
+        @error '$font-sizes does not have that size!';
+    }
+}
+
+@function size($size) {
+    @if map.has-key($sizes, $size) {
+        @return map.get($sizes, $size);
+    } @else {
+        @error '$sizes does not have that size!';
+    }
+}
+
+@function lighten($color, $percentage) {
+    @return mix(white, $color, $percentage);
+}
+
+@function darken($color, $percentage) {
+    @return mix(black, $color, $percentage);
+}

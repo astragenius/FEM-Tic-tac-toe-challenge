@@ -1,0 +1,71 @@
+/* Font sizes */
+
+$font-sizes: (
+    80: 5rem, //80px
+    60: 3.75rem, //60px
+    40: 2.5rem, // 40px
+    24: 1.5rem, //24px
+    20: 1.125rem, //20px
+    18: 1.125rem, //18px
+    16: 1rem, //16px
+    14: 0.875rem, //14px
+    
+);
+
+/* font-weight */
+$font-weight: (
+
+  100: 100,
+  200: 200,
+  300: 300,
+  400: 400,
+  500: 500,
+  600: 600,
+  700: 700,
+  800: 800,
+  900: 900,
+);
+
+/* letter spacing */
+
+$letter-size: (
+
+    xss: 0.8px,
+    xs: 1px,
+    s: 1.25px,
+    m: 1.5px,
+    l: 2.5px,
+);
+
+
+/* sizes */
+
+$sizes: (
+    8: 0.5rem,
+    12: 0.75rem,
+    16: 1rem,
+    20: 1.25rem,
+    24: 1.5rem,
+    32: 2rem,
+    36: 2.25rem,
+);
+
+
+/* Default Colors */
+
+$colors: (
+  dark: (
+    'navy': #1a2a33,
+    navy2: #1f3641,
+  ),
+  neutral: (
+    'silver': #a8bfc9,
+    silver-hover: #dbe8ed,
+  ),
+  light: (
+   'blue': #31c3bd,
+    blue-hover: #65e9e4,
+    'yellow': #f2b137,
+    yellow-hover: #ffc860,
+  ),
+);

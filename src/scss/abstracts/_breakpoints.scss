@@ -1,0 +1,10 @@
+$breakpoints-up: ( //min-with
+  "tiny": 44.375em, // 710px
+  "very-small": 56.25em, // 900px
+  "small": 77.5em, // 1240px
+);
+$breakpoints-down: ( //max-width
+  "tiny": 44.3125em, // 709px
+  "very-small": 56.1875em, // 899px
+  "small": 77.4375em, // 1239px
+);

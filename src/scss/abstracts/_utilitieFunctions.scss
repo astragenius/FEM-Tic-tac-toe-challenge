@@ -1,0 +1,94 @@
+
+/* generate Font-size util classes */
+@each $size-name, $size-value in $font-sizes {
+    .fs-#{$size-name} {
+        font-size: $size-value;
+    }
+}
+
+/* font-weight */
+@each $size-name, $size-value in $font-weight {
+
+  .fw-#{$size-name} {
+    font-weight: $size-value;
+  }
+}
+
+/* letter spacing */
+
+@each $size-name, $size-value in $letter-size {
+
+  .letter-spacing-#{$size-name} {
+    letter-spacing: $size-value;
+  }
+}
+
+@each $color, $shade-map in $colors {
+    @each $shade, $value in $shade-map {
+        .clr-#{$color}-#{$shade} {
+            color: $value;
+        }
+        .bg-#{$color}-#{$shade} {
+            background-color: $value;
+        }
+    }
+}
+
+@each $size-name, $size-value in $sizes {
+
+    .margin {
+        &-#{$size-name} {
+            margin: $size-value;
+        }
+        &-block-start-#{$size-name} {
+            -webkit-margin-before: $size-value;
+                    margin-block-start: $size-value;
+          }
+        &-block-end-#{$size-name} {
+            -webkit-margin-after: $size-value;
+                    margin-block-end: $size-value;
+          }
+        &-block-#{$size-name} {
+            margin-block: $size-value;
+          }
+        &-inline-start-#{$size-name} {
+            -webkit-margin-start: $size-value;
+                    margin-inline-start: $size-value;
+          }
+        &-inline-end-#{$size-name} {
+            -webkit-margin-end: $size-value;
+                    margin-inline-end: $size-value;
+          }
+        &-inline-#{$size-name} {
+            margin-inline: $size-value;
+          }
+    }
+    .padding {
+        &-#{$size-name} {
+          padding: $size-value;
+        }
+        &-block-start-#{$size-name} {
+          -webkit-padding-before: $size-value;
+                  padding-block-start: $size-value;
+        }
+        &-block-end-#{$size-name} {
+          -webkit-padding-after: $size-value;
+                  padding-block-end: $size-value;
+        }
+        &-block-#{$size-name} {
+          padding-block: $size-value;
+        }
+        &-inline-start-#{$size-name} {
+          -webkit-padding-start: $size-value;
+                  padding-inline-start: $size-value;
+        }
+        &-inline-end-#{$size-name} {
+          -webkit-padding-end: $size-value;
+                  padding-inline-end: $size-value;
+        }
+        &-inline-#{$size-name} {
+          padding-inline: $size-value;
+        }
+      }
+    
+}
