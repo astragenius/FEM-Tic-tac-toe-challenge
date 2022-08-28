@@ -2,6 +2,7 @@ node_modules
 <<<<<<< HEAD
 =======
 dist
+design-system.html
 .vscode
 .DS_Store
 >>>>>>> webpack-1

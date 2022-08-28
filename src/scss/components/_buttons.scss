@@ -1,0 +1,68 @@
+body {
+    display: grid;
+    place-items: center;
+    height: 100vh;
+}
+
+.container {
+    
+    width: 50%;
+    place-content: center;
+    padding: 2em;
+    display: grid;
+    gap: 2em;
+}
+
+
+
+.btn {
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    border-radius: 14px;
+    background-color: none;
+    transition: all ease-in-out 300ms;
+}
+
+.btn-1,
+.btn-2 {
+    width: 100%;
+}
+
+.btn-1 {
+    box-shadow: inset 0px -8px 0px #CC8B13;  
+}
+.btn-1:hover,
+.btn-sec-1:hover {
+    background-color: var(--yellow-hover);
+}
+.btn-2 {
+    box-shadow: inset 0px -8px 0px #118C87;
+}
+.btn-2:hover {
+    background-color: var(--blue-hover);
+}
+.btn-sec-1 {
+    box-shadow: inset 0px -4px 0px #CC8B13;  
+}
+
+.btn-sec-1,
+.btn-sec-2,
+.btn-reload {
+    border-radius: 10px;
+}
+
+.btn-sec-2,
+.btn-reload {
+    box-shadow: inset 0px -4px 0px #6B8997;
+   
+}
+.btn-sec-2:hover,
+.btn-reload:hover {
+    background-color: var(--silver-hover);
+}
+
+.btn-reload {
+    display: flex;
+  
+}
