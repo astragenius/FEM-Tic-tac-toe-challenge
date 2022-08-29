@@ -61,15 +61,6 @@
     
 }
 
-/* .toggle-symbol-X,
-.toggle-symbol-O {
-    width: 32px;
-    aspect-ratio: 1;
-    position: relative;
-    z-index: 10;
-   
-   
-} */
 
 .toggle-symbol-o,
 .toggle-symbol-x {
@@ -98,12 +89,11 @@
     
 }
 
-
-
 .checkbox:checked  ~ .toggle-symbol-o .fill-symbol-o {
     fill: #A8BFC9;
 }
 
-.fill-symbol-x {
-    
+.checkbox:checked ~ .toggle-symbol-x .fill-symbol-x {
+    fill: #1A2A33;
 }
+
