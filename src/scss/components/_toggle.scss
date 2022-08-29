@@ -57,13 +57,11 @@
     top: 0;
     right: 0;
     border-radius: 10px;
-    
     transition: transform .2s cubic-bezier(0.96, -0.11, 0, 1.12);
     
-
 }
 
-.toggle-symbol-X,
+/* .toggle-symbol-X,
 .toggle-symbol-O {
     width: 32px;
     aspect-ratio: 1;
@@ -71,6 +69,14 @@
     z-index: 10;
    
    
+} */
+
+.toggle-symbol-o,
+.toggle-symbol-x {
+    width: 32px;
+    aspect-ratio: 1;
+    z-index: 10;
+    
 }
 
 
@@ -82,8 +88,8 @@
     height: 100%;
     cursor: pointer;
     -webkit-appearance: none;
-       -moz-appearance: none;
-            appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 
@@ -92,3 +98,12 @@
     
 }
 
+
+
+.checkbox:checked  ~ .toggle-symbol-o .fill-symbol-o {
+    fill: #A8BFC9;
+}
+
+.fill-symbol-x {
+    
+}
