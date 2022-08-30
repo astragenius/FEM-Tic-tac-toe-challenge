@@ -1,8 +1,27 @@
+
+.wrapper {
+
+    width: 90vw;
+    width: clamp(rem(375), 90vw, rem(1440));
+    margin-inline: auto;
+    padding-inline: rem(16);
+    position: relative;
+}
+
+.center-container {
+    display: grid;
+    place-items: center;
+}
+
+.margin-auto {
+    margin-inline: auto;
+}
+
 .uppercase {
     text-transform: uppercase;
 }
 
 .flow > * {
 
-    margin-top: var(--flow-spacer, 3em)
+    margin-top: var(--flow-spacer, 2em)
 }

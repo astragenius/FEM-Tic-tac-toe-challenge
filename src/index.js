@@ -1,11 +1,7 @@
 import './scss/index.scss'
 import './assets/img/icon-restart.svg'
-import x from './assets/img/toggle-x.svg'
-import O from './assets/img/toggle-O.svg'
+import logoImg from './assets/img/logo.svg'
 
-const imgX = document.querySelector('.toggle-symbol-X')
-const imgO = document.querySelector('.toggle-symbol-O')
+const logo = document.querySelector('.game-menu-logo')
 
-const toggle = document.querySelector('#toggle')
-
-console.log(toggle.checked)
+logo.src = logoImg

@@ -1,0 +1,5 @@
+.game-menu {
+    display: grid;
+    max-width: clamp(rem(300), rem(400) + 10vw, rem(460));
+
+}

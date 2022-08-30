@@ -9,7 +9,8 @@
         padding-inline: 2em;
         box-shadow: inset 0px -8px 0px #10212A;
         border-radius: 15px;
-
+       
+        
     
     .bottom-p {
         opacity: 0.5;
@@ -22,9 +23,9 @@
     display: flex;
     justify-content: space-around;
     gap: 5rem;
-    border-radius: 10px;
-    width: 400px;
-    
+    border-radius: rem(10);
+   
+    width: 100%;
     padding: 1em 1.25em;
     outline: 8px solid #1A2A33;
     background-color: #1A2A33;
@@ -56,7 +57,7 @@
     height: 100%;
     top: 0;
     right: 0;
-    border-radius: 10px;
+    border-radius: rem(10);
     transition: transform .2s cubic-bezier(0.96, -0.11, 0, 1.12);
     
 }
