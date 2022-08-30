@@ -1,0 +1,42 @@
+[data-modal-active="false"] {
+    display: none;
+}
+
+[data-modal-active="true"] {
+
+    display: grid;
+}
+
+.modal-container {
+    position: fixed;
+    place-items: center;
+    z-index: 20;
+    inset: 0;
+    
+    background-color: hsl(0, 0%, 0%, 0.5);
+    
+}
+
+.modal {
+    
+   
+    padding-block: 3em;
+    background-color: #1F3641;
+}
+
+.modal-content {
+    display: grid;
+    place-items: center;
+    
+        p {
+    
+            text-align: center;
+        }
+}
+
+
+.modal-button-container {
+    display: flex;
+    gap: 2em;
+    
+}
