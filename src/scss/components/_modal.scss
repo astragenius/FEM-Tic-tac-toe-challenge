@@ -7,22 +7,55 @@
     display: grid;
 }
 
+
+
 .modal-container {
     position: fixed;
     place-items: center;
     z-index: 20;
     inset: 0;
-    
     background-color: hsl(0, 0%, 0%, 0.5);
     
 }
 
 .modal {
     
-   
     padding-block: 3em;
     background-color: #1F3641;
 }
+
+.modal-titel {
+    position: relative;
+}
+[data-winner="neutral"] {
+    color: #A8BFC9;
+}
+[data-winner="x"] {
+    color: #31C3BD;
+}
+[data-winner="x"]::before {
+    content:url(/src/assets/img/icon-x.svg);
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    top: -30%;
+    left: -40%;
+    
+}
+[data-winner="o"] {
+    color: #F2B137
+}
+
+[data-winner="o"]::before {
+    content:url(/src/assets/img/icon-o.svg);
+    width: 28px;
+    height: 28px;
+    position: absolute;
+    top: -30%;
+    left: -40%;
+    
+}
+
 
 .modal-content {
     display: grid;

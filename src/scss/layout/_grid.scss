@@ -1,0 +1,16 @@
+.game-field {
+    display: grid;
+    
+    grid-template-columns: repeat(3, clamp(rem(96), calc(rem(100) + 5vw), rem(140)));
+    gap: 20px;
+    border: 2px solid magenta;
+   //grid-template-rows: repeat(3, 1fr);
+  
+    
+}
+
+.game-tile {
+    aspect-ratio: 1;
+    border: 2px solid tomato;
+    
+}
