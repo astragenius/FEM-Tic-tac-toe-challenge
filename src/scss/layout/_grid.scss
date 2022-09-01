@@ -1,16 +1,38 @@
-.game-field {
+.game-board {
     display: grid;
+    gap: rem(20);
+    max-width: 100%;
+    margin-top: rem(24);
+   
+}
+.game-field,
+.game-board-header,
+.game-board-footer {
+    display: grid;
+    grid-template-columns: repeat(3, clamp(rem(96), calc(rem(52) + 10vw), rem(140)));
+    gap: rem(20);
     
-    grid-template-columns: repeat(3, clamp(rem(96), calc(rem(100) + 5vw), rem(140)));
-    gap: 20px;
-    border: 2px solid magenta;
-   //grid-template-rows: repeat(3, 1fr);
-  
+}
+
+.game-board-header {
     
+    margin-bottom: min(rem(20), 5vw); 
+}
+
+.game-board-header img {
+    place-self: center;
 }
 
 .game-tile {
     aspect-ratio: 1;
-    border: 2px solid tomato;
     
+    
+}
+.btn-reload {
+    justify-self: end;
+}
+
+.game-board-footer div {
+  
+   text-align: center;
 }

@@ -1,4 +1,14 @@
 
+body {
+    display: grid;
+    height: 100vh;
+
+    @include breakpoint-up('tiny') {
+        place-items: center;
+    }
+}
+
+
 .wrapper {
 
     width: 90vw;
