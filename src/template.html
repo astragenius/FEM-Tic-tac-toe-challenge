@@ -23,7 +23,7 @@
                                 <img class="game-board-logo" src="" alt="">
                             
                             <div class="player-turn">
-                                <img class="player-turn-symbol" src="" alt="">
+                                <img data-turn="X" class="player-turn-symbol" src="" alt="">
                                 <p class="clr-neutral-silver uppercase fw-700 letter-spacing-xs">Turn</p>
                             </div>
                             <button class="btn btn-reload | bg-neutral-silver padding-16">
@@ -32,30 +32,30 @@
                         </header>
 
 
-                        <div class="game-field">
+                        <div data-turn="O" class="game-field">
+                            <div class="game-tile x-marker"></div>
                             <div class="game-tile"></div>
                             <div class="game-tile"></div>
                             <div class="game-tile"></div>
                             <div class="game-tile"></div>
                             <div class="game-tile"></div>
-                            <div class="game-tile"></div>
-                            <div class="game-tile"></div>
-                            <div class="game-tile"></div>
-                            <div class="game-tile"></div>
+                            <div class="game-tile o-marker"></div>
+                            <div class="game-tile o-marker"></div>
+                            <div class="game-tile o-marker"></div>
                         </div>
 
-                        <footer class="game-board-footer">
+                        <footer class="game-board-footer clr-dark-navy ">
                             <div class="game-status | bg-light-blue padding-block-8">
-                                <p class="fs-12 fw-400">X(You)</p>
-                                <p class="fw-700 fs-20">14</p>
+                                <p class="fluid-fs-12-14 fw-500 letter-spacing-xss">X(You)</p>
+                                <p class="fw-700 fluid-fs-20-24 letter-spacing-m">14</p>
                             </div>
                             <div class="game-status | bg-neutral-silver padding-block-8">
-                                <p class="fs-12 fw-400">Ties</p>
-                                <p class="fw-700 fs-20">32</p>
+                                <p class="fluid-fs-12-14 fw-500 letter-spacing-xss">Ties</p>
+                                <p class="fw-700 fluid-fs-20-24 letter-spacing-m">32</p>
                             </div>
                             <div class="game-status | bg-light-yellow padding-block-8">
-                                <p class="fs-12 fw-400">o(cpu)</p>
-                                <p class="fw-700 fs-20">11</p>
+                                <p class="fluid-fs-12-14 fw-500 letter-spacing-xss">o(cpu)</p>
+                                <p class="fw-700 fluid-fs-20-24 letter-spacing-m">11</p>
                             </div>
                         </footer>
                     </section>

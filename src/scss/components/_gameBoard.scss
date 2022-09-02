@@ -22,7 +22,44 @@
 }
 
 .game-tile {
+    position: relative;
     background-color: #1F3641;
     box-shadow: inset 0px -8px 0px #10212A;
     cursor: pointer;
 }
+
+.game-tile:hover::before {
+    
+    width: 100%;
+    display: grid;
+    place-items: center;
+    aspect-ratio: 1;
+    
+}
+
+
+
+[data-turn="O"] > .game-tile:hover::before {
+
+    content: url(/src/assets/img/icon-o-outline.svg);
+}
+[data-turn="X"] > .game-tile:hover::before {
+
+    content: url(/src/assets/img/icon-x-outline.svg);
+}
+
+.x-marker {
+    background-image: url(/src/assets/img/icon-x.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    
+}
+.o-marker {
+    background-image: url(/src/assets/img/icon-o.svg);
+    background-repeat: no-repeat;
+    background-position: center;
+    pointer-events: none;
+    
+}
+
