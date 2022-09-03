@@ -11,13 +11,16 @@ const btnReload = document.querySelector('.btn-reload')
 const modal = document.querySelector('.modal-container')
 
 btnReload.addEventListener('click', () => {
-    console.log(modal.attributes[0])
-    modal.innerHTML = RenderModal()
-
     if (modal.getAttribute('data-modal-active') === 'false') {
         modal.setAttribute('data-modal-active', true)
     }
 })
+
+class Modal {
+    constructor(props) {
+        this.state = {}
+    }
+}
 
 //logo.src = logoImg
 headerTurn.src = xSymbol
