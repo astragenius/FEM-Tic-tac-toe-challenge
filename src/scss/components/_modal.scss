@@ -30,10 +30,10 @@
 [data-winner="neutral"] {
     color: #A8BFC9;
 }
-[data-winner="x"] {
+[data-winner="X"] {
     color: #31C3BD;
 }
-[data-winner="x"]::before {
+[data-winner="X"]::before {
     content:url(/src/assets/img/icon-x.svg);
     width: 28px;
     height: 28px;
@@ -42,11 +42,11 @@
     left: -40%;
     
 }
-[data-winner="o"] {
+[data-winner="O"] {
     color: #F2B137
 }
 
-[data-winner="o"]::before {
+[data-winner="O"]::before {
     content:url(/src/assets/img/icon-o.svg);
     width: 28px;
     height: 28px;
