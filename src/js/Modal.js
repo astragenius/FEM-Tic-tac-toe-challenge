@@ -23,7 +23,13 @@ export class Modal {
         update()
     }
 
-    close() {}
+    close() {
+        document.querySelector('.btn-sec-2').addEventListener('click', () => {
+            document
+                .querySelector('.modal-container')
+                .setAttribute('data-modal-active', false)
+        })
+    }
 
     render() {
         return `<section class="modal bg-dark-navy1 full-bleed">

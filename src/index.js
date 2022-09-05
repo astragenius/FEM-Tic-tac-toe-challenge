@@ -43,12 +43,16 @@ export function update() {
     document.querySelector('.modal-container').innerHTML = newModal.render()
 }
 
-const newModal = new Modal(dataPlayerXlose)
-modal.innerHTML = newModal.render()
+const newModal = new Modal(dataTied)
 
 btnReload.addEventListener('click', () => {
     if (modal.getAttribute('data-modal-active') === 'false') {
         modal.setAttribute('data-modal-active', true)
+        modal.innerHTML = newModal.render()
+        newModal.close()
+        /* document.querySelector('.btn-sec-2').addEventListener('click', () => {
+            modal.setAttribute('data-modal-active', false)
+        }) */
     }
 })
 
