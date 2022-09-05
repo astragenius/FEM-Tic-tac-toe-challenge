@@ -2,6 +2,7 @@ import './scss/index.scss'
 import './assets/img/icon-restart.svg'
 import logoImg from './assets/img/logo.svg'
 import xSymbol from './assets/img/toggle-x.svg'
+import OSymbol from './assets/img/toggle-o.svg'
 import { Modal } from './js/Modal'
 
 const logo = document.querySelector('.game-menu-logo')
@@ -43,19 +44,35 @@ export function update() {
     document.querySelector('.modal-container').innerHTML = newModal.render()
 }
 
-const newModal = new Modal(dataTied)
+const newModal = new Modal(dataRestart)
 
 btnReload.addEventListener('click', () => {
     if (modal.getAttribute('data-modal-active') === 'false') {
         modal.setAttribute('data-modal-active', true)
         modal.innerHTML = newModal.render()
-        newModal.close()
-        /* document.querySelector('.btn-sec-2').addEventListener('click', () => {
-            modal.setAttribute('data-modal-active', false)
-        }) */
+        newModal.addListener()
     }
 })
 
 //logo.src = logoImg
 headerTurn.src = xSymbol
 gameBoardLogo.src = logoImg
+
+const gameField = document.querySelector('.game-field')
+const turnImg = document.querySelector('.player-turn-symbol')
+const tiles = [...document.querySelectorAll('.game-tile')]
+tiles.forEach((tile) => {
+    tile.addEventListener('click', function () {
+        if (gameField.getAttribute('data-turn') === 'X') {
+            turnImg.setAttribute('data-turn', 'x')
+            this.classList.add('x-marker')
+            gameField.setAttribute('data-turn', 'O')
+            headerTurn.src = OSymbol
+        } else {
+            turnImg.setAttribute('data-turn', 'o')
+            this.classList.add('o-marker')
+            gameField.setAttribute('data-turn', 'X')
+            headerTurn.src = xSymbol
+        }
+    })
+})

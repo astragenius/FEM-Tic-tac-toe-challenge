@@ -23,12 +23,29 @@ export class Modal {
         update()
     }
 
-    close() {
-        document.querySelector('.btn-sec-2').addEventListener('click', () => {
+    addListener() {
+        function setClose() {
             document
-                .querySelector('.modal-container')
-                .setAttribute('data-modal-active', false)
-        })
+                .querySelector('.btn-sec-2')
+                .addEventListener('click', () => {
+                    document
+                        .querySelector('.modal-container')
+                        .setAttribute('data-modal-active', false)
+                })
+        }
+
+        function setNextRound() {
+            document
+                .querySelector('.btn-sec-1')
+                .addEventListener('click', () => {
+                    document
+                        .querySelector('.modal-container')
+                        .setAttribute('data-modal-active', false)
+                })
+        }
+
+        setClose()
+        setNextRound()
     }
 
     render() {
