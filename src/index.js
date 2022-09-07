@@ -4,8 +4,9 @@ import logoImg from './assets/img/logo.svg'
 import xSymbol from './assets/img/toggle-x.svg'
 import OSymbol from './assets/img/toggle-o.svg'
 import { Modal } from './js/Modal'
+import { CreatePlayer } from './js/CreatePlayer'
+import { players, StartToggle } from './js/StartToggle'
 
-const logo = document.querySelector('.game-menu-logo')
 const headerTurn = document.querySelector('.player-turn-symbol')
 const gameBoardLogo = document.querySelector('.game-board-logo')
 const btnReload = document.querySelector('.btn-reload')
@@ -46,19 +47,19 @@ export function update() {
 
 const newModal = new Modal(dataRestart)
 
-btnReload.addEventListener('click', () => {
+/* btnReload.addEventListener('click', () => {
     if (modal.getAttribute('data-modal-active') === 'false') {
         modal.setAttribute('data-modal-active', true)
         modal.innerHTML = newModal.render()
         newModal.addListener()
     }
-})
+}) */
 
 //logo.src = logoImg
-headerTurn.src = xSymbol
-gameBoardLogo.src = logoImg
+//headerTurn.src = xSymbol
+//gameBoardLogo.src = logoImg
 
-const gameField = document.querySelector('.game-field')
+/* const gameField = document.querySelector('.game-field')
 const turnImg = document.querySelector('.player-turn-symbol')
 const tiles = [...document.querySelectorAll('.game-tile')]
 tiles.forEach((tile) => {
@@ -75,4 +76,20 @@ tiles.forEach((tile) => {
             headerTurn.src = xSymbol
         }
     })
-})
+}) */
+
+function setPlayers() {
+    const inputSymbol = document.querySelector('.checkbox')
+
+    if (inputSymbol.checked === true) {
+        let player1 = new CreatePlayer('X', 'Player1')
+        let player2 = new CreatePlayer('O', 'Player2')
+        console.log(player2.getPlayer())
+        console.log(player1.getPlayer())
+    }
+}
+
+StartToggle.render('.center-container')
+StartToggle.addListener()
+
+console.log(players)
