@@ -1,6 +1,6 @@
 import logoIMG from '../assets/img/logo.svg'
 import { CreatePlayer } from './CreatePlayer'
-export let players = []
+
 export const StartToggle = (function () {
     const Toggle = () => {
         return ` <label class="toggle-label" for="toggle">
@@ -58,9 +58,6 @@ export const StartToggle = (function () {
                 player1 = new CreatePlayer('O', 'Player 1')
                 player2 = new CreatePlayer('X', 'Player 2')
             }
-
-            players.push(player1)
-            players.push(player2)
         })
     }
 
