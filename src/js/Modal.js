@@ -1,4 +1,4 @@
-import { update } from '..'
+//import { update } from '..'
 
 export class Modal {
     constructor(props) {
@@ -9,6 +9,8 @@ export class Modal {
             btnText1: props.btnText1,
             btnText2: props.btnText2,
         }
+
+        this.modalContainer = document.querySelector('.modal-container')
     }
 
     newState(newProps) {
@@ -20,7 +22,11 @@ export class Modal {
             btnText2: newProps.btnText2,
         }
 
-        update()
+        this.update()
+    }
+
+    update() {
+        this.modalContainer.innerHTML = this.render()
     }
 
     addListener() {

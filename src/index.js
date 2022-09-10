@@ -42,9 +42,9 @@ let dataPlayerXlose = {
     btnText2: 'next round',
 }
 
-export function update() {
+/* export function update() {
     document.querySelector('.modal-container').innerHTML = newModal.render()
-}
+} */
 
 //logo.src = logoImg
 headerTurn.src = xSymbol
@@ -54,5 +54,6 @@ let p1 = new CreatePlayer('X', 'Player1')
 let p2 = new CreatePlayer('O', 'Player2')
 const gameboard = new GameBoard(p1, p2)
 gameboard.init()
+
 //StartToggle.render('.center-container')
 //StartToggle.addListener()
