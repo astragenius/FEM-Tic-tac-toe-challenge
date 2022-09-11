@@ -42,10 +42,6 @@ let dataPlayerXlose = {
     btnText2: 'next round',
 }
 
-/* export function update() {
-    document.querySelector('.modal-container').innerHTML = newModal.render()
-} */
-
 //logo.src = logoImg
 headerTurn.src = xSymbol
 gameBoardLogo.src = logoImg

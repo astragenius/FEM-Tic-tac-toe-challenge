@@ -1,5 +1,3 @@
-//import { update } from '..'
-
 export class Modal {
     constructor(props) {
         this.state = {
@@ -11,6 +9,8 @@ export class Modal {
         }
 
         this.modalContainer = document.querySelector('.modal-container')
+        this.btnSec1 = document.querySelector('.btn-sec-1')
+        this.btnSec2 = document.querySelector('.btn-sec-2')
     }
 
     newState(newProps) {
@@ -29,29 +29,25 @@ export class Modal {
         this.modalContainer.innerHTML = this.render()
     }
 
-    addListener() {
-        function setClose() {
-            document
-                .querySelector('.btn-sec-2')
-                .addEventListener('click', () => {
-                    document
-                        .querySelector('.modal-container')
-                        .setAttribute('data-modal-active', false)
-                })
-        }
+    addListener(fn1, fn2) {
+        document
+            .querySelector('.btn-sec-2')
+            .addEventListener('click', function () {
+                document
+                    .querySelector('.modal-container')
+                    .setAttribute('data-modal-active', false)
 
-        function setNextRound() {
-            document
-                .querySelector('.btn-sec-1')
-                .addEventListener('click', () => {
-                    document
-                        .querySelector('.modal-container')
-                        .setAttribute('data-modal-active', false)
-                })
-        }
+                fn1()
+            })
 
-        setClose()
-        setNextRound()
+        document
+            .querySelector('.btn-sec-1')
+            .addEventListener('click', function () {
+                document
+                    .querySelector('.modal-container')
+                    .setAttribute('data-modal-active', false)
+                fn2()
+            })
     }
 
     render() {

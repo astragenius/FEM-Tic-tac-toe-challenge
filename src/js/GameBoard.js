@@ -36,6 +36,7 @@ export class GameBoard {
         this.p1Score = document.querySelector('#playerScore')
         this.tieScore = document.querySelector('#tieScore')
         this.p2Score = document.querySelector('#player2Score')
+        this.tiles = [...document.querySelectorAll('.game-tile')]
     }
 
     init() {
@@ -49,15 +50,31 @@ export class GameBoard {
         if (this.modalContainer.getAttribute('data-modal-active') === 'false') {
             this.modalContainer.setAttribute('data-modal-active', true)
             this.modalContainer.innerHTML = this.modal.render()
-            this.modal.addListener()
+            this.modal.addListener(this.modalState, this.resetGameBoard)
         }
+    }
+
+    modalState() {
+        console.log('ModalState')
+    }
+
+    resetGameBoard() {
+        const tiles = [...document.querySelectorAll('.game-tile')]
+        const turnImg = document.querySelector('.player-turn-symbol')
+        const gameField = document.querySelector('.game-field')
+        tiles.forEach((tile) => {
+            tile.classList.remove('x-marker')
+            tile.classList.remove('o-marker')
+        })
+        gameField.setAttribute('data-turn', 'X')
+        turnImg.src = xSymbol
     }
 
     setEventListener() {
         const gameField = document.querySelector('.game-field')
-        const tiles = [...document.querySelectorAll('.game-tile')]
+
         const turnImg = document.querySelector('.player-turn-symbol')
-        tiles.forEach((tile) => {
+        this.tiles.forEach((tile) => {
             tile.addEventListener('click', function () {
                 if (gameField.getAttribute('data-turn') === 'X') {
                     turnImg.setAttribute('data-turn', 'X')
@@ -85,30 +102,18 @@ export class GameBoard {
     addPointsP1() {
         this.p1.points++
     }
-    getPointsP1() {
-        return this.p1.points
-    }
 
     addPointsP2() {
         this.p2.points++
     }
-    getPointsP2() {
-        return this.p2.points
-    }
-    getSymbol(prop) {
-        return prop.symbol
-    }
+
     setDraw() {
         this.draw++
     }
-    getDraw() {
-        return this.draw
-    }
 
     renderPoints() {
-        console.log(this.getPointsP1())
-        this.p1Score.textContent = this.getPointsP1()
-        this.p2Score.textContent = this.getPointsP2()
+        this.p1Score.textContent = this.p1.points
+        this.p2Score.textContent = this.p2.points
         this.tieScore.textContent = this.draw
     }
 }
