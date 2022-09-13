@@ -41,6 +41,13 @@ let dataPlayerXlose = {
     btnText1: 'quit',
     btnText2: 'next round',
 }
+let dataPlayerOWin = {
+    playerText: 'Player 2 winns',
+    headText: 'takes the round',
+    playerSymbol: 'O',
+    btnText1: 'quit',
+    btnText2: 'next round',
+}
 
 //logo.src = logoImg
 headerTurn.src = xSymbol
@@ -49,7 +56,32 @@ gameBoardLogo.src = logoImg
 let p1 = new CreatePlayer('X', 'Player1')
 let p2 = new CreatePlayer('O', 'Player2')
 const gameboard = new GameBoard(p1, p2)
-gameboard.init()
 
 //StartToggle.render('.center-container')
 //StartToggle.addListener()
+function gameStart() {
+    const gameField = document.querySelector('.game-field')
+    const tiles = [...document.querySelectorAll('.game-tile')]
+    const turnImg = document.querySelector('.player-turn-symbol')
+    gameboard.init()
+
+    tiles.forEach((tile) => {
+        tile.addEventListener('click', () => {
+            if (gameField.getAttribute('data-turn') === 'X') {
+                turnImg.setAttribute('data-turn', 'X')
+                tile.classList.add('x-marker')
+                gameField.setAttribute('data-turn', 'O')
+                turnImg.src = OSymbol
+                gameboard.checkWinner('x-marker'), 'X-wins'
+            } else {
+                turnImg.setAttribute('data-turn', 'O')
+                tile.classList.add('o-marker')
+                gameField.setAttribute('data-turn', 'X')
+                turnImg.src = xSymbol
+                gameboard.checkWinner('o-marker')
+            }
+        })
+    })
+}
+
+gameStart()

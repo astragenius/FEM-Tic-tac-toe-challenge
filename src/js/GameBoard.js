@@ -9,11 +9,31 @@ let dataRestart = {
     btnText1: 'no, cancel',
     btnText2: 'yes, restart',
 }
-
 let dataTied = {
     playerText: '',
     headText: 'Round tied',
     playerSymbol: 'neutral',
+    btnText1: 'quit',
+    btnText2: 'next round',
+}
+let dataPlayerXWin = {
+    playerText: 'you won!',
+    playerSymbol: 'X',
+    headText: 'takes the round',
+    btnText1: 'quit',
+    btnText2: 'next round',
+}
+let dataPlayerXlose = {
+    playerText: 'oh no you lose..',
+    headText: 'takes the round',
+    playerSymbol: 'X',
+    btnText1: 'quit',
+    btnText2: 'next round',
+}
+let dataPlayerOWin = {
+    playerText: 'Player 2 wins',
+    headText: 'takes the round',
+    playerSymbol: 'O',
     btnText1: 'quit',
     btnText2: 'next round',
 }
@@ -40,7 +60,6 @@ export class GameBoard {
     }
 
     init() {
-        this.setEventListener()
         this.initReloadBtn()
     }
 
@@ -70,28 +89,7 @@ export class GameBoard {
         turnImg.src = xSymbol
     }
 
-    setEventListener() {
-        const gameField = document.querySelector('.game-field')
-
-        const turnImg = document.querySelector('.player-turn-symbol')
-        this.tiles.forEach((tile) => {
-            tile.addEventListener('click', function () {
-                if (gameField.getAttribute('data-turn') === 'X') {
-                    turnImg.setAttribute('data-turn', 'X')
-                    this.classList.add('x-marker')
-                    gameField.setAttribute('data-turn', 'O')
-                    turnImg.src = OSymbol
-                } else {
-                    turnImg.setAttribute('data-turn', 'O')
-                    this.classList.add('o-marker')
-                    gameField.setAttribute('data-turn', 'X')
-                    turnImg.src = xSymbol
-                }
-            })
-        })
-    }
-
-    checkWinner(currendSymbol) {
+    checkWinner(currendClass) {
         const tiles = [...document.querySelectorAll('.game-tile')]
         const WINING_COMBINATION = [
             [0, 1, 2],
@@ -104,11 +102,18 @@ export class GameBoard {
             [2, 4, 6],
         ]
 
-        return WINING_COMBINATION.some((combination) => {
+        const winner = WINING_COMBINATION.some((combination) => {
             return combination.every((index) => {
-                return tiles[index].classList.contains(currendSymbol)
+                return tiles[index].classList.contains(currendClass)
             })
         })
+
+        if (winner === true && currendClass === 'x-marker') {
+            this.showModal(dataPlayerXWin)
+        }
+        if (winner === true && currendClass === 'o-marker') {
+            this.showModal(dataPlayerOWin)
+        }
     }
 
     initReloadBtn() {
