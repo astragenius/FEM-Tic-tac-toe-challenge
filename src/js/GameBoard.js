@@ -89,6 +89,22 @@ export class GameBoard {
         turnImg.src = xSymbol
     }
 
+    checkIsDraw() {
+        const tiles = [...document.querySelectorAll('.game-tile')]
+        const draw = tiles.every((tile) => {
+            return (
+                tile.classList.contains('x-marker') ||
+                tile.classList.contains('o-marker')
+            )
+        })
+
+        if (draw === true || this.checkWinner() === false) {
+            this.showModal(dataTied)
+            this.setDraw()
+            this.renderPoints()
+        }
+    }
+
     checkWinner(currendClass) {
         const tiles = [...document.querySelectorAll('.game-tile')]
         const WINING_COMBINATION = [
@@ -110,10 +126,13 @@ export class GameBoard {
 
         if (winner === true && currendClass === 'x-marker') {
             this.showModal(dataPlayerXWin)
+            this.addPointsP1()
         }
         if (winner === true && currendClass === 'o-marker') {
             this.showModal(dataPlayerOWin)
+            this.addPointsP2()
         }
+        this.renderPoints()
     }
 
     initReloadBtn() {

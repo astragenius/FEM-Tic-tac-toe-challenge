@@ -6,6 +6,7 @@ export class Modal {
             playerSymbol: props.playerSymbol,
             btnText1: props.btnText1,
             btnText2: props.btnText2,
+            testFunction: props.testFunction,
         }
 
         this.modalContainer = document.querySelector('.modal-container')

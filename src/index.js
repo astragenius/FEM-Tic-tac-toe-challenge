@@ -72,13 +72,15 @@ function gameStart() {
                 tile.classList.add('x-marker')
                 gameField.setAttribute('data-turn', 'O')
                 turnImg.src = OSymbol
-                gameboard.checkWinner('x-marker'), 'X-wins'
+                gameboard.checkWinner('x-marker')
+                gameboard.checkIsDraw()
             } else {
                 turnImg.setAttribute('data-turn', 'O')
                 tile.classList.add('o-marker')
                 gameField.setAttribute('data-turn', 'X')
                 turnImg.src = xSymbol
                 gameboard.checkWinner('o-marker')
+                gameboard.checkIsDraw()
             }
         })
     })
