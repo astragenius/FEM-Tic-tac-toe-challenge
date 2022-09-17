@@ -10,8 +10,6 @@ import { GameBoard } from './js/GameBoard'
 
 const headerTurn = document.querySelector('.player-turn-symbol')
 const gameBoardLogo = document.querySelector('.game-board-logo')
-const btnReload = document.querySelector('.btn-reload')
-const modal = document.querySelector('.modal-container')
 
 let dataRestart = {
     playerText: '',
@@ -19,6 +17,9 @@ let dataRestart = {
     playerSymbol: 'neutral',
     btnText1: 'no, cancel',
     btnText2: 'yes, restart',
+    btnSec1Function: () => {
+        GameBoard.resetGameBoard()
+    },
 }
 let dataTied = {
     playerText: '',
@@ -42,11 +43,18 @@ let dataPlayerXlose = {
     btnText2: 'next round',
 }
 let dataPlayerOWin = {
-    playerText: 'Player 2 winns',
+    playerText: 'Player 2 wins',
     headText: 'takes the round',
     playerSymbol: 'O',
     btnText1: 'quit',
     btnText2: 'next round',
+    closeFunc: function () {
+        const modalContainer = document.querySelector('.modal-container')
+        modalContainer.setAttribute('data-modal-active', false)
+    },
+    btnSec1Function: function () {
+        console.log('Das ist eine Test function')
+    },
 }
 
 const modalSection = document.createElement('section')
@@ -58,14 +66,53 @@ gameBoardLogo.src = logoImg
 /* let p1 = new CreatePlayer('X', 'Player1')
 let p2 = new CreatePlayer('O', 'Player2') */
 const gameboard = new GameBoard(0, 0)
+const modal = new Modal(dataRestart)
 
 //StartToggle.render('.center-container')
 //StartToggle.addListener()
+
+function showModal(state) {
+    const modalContainer = document.querySelector('.modal-container')
+    if (!modalContainer.contains(document.querySelector('.modal'))) {
+        modal.newState(state)
+        modalContainer.appendChild(modal.render())
+    }
+    if (modalContainer.getAttribute('data-modal-active') === 'false') {
+        modalContainer.setAttribute('data-modal-active', true)
+    }
+}
+function renderDraw() {
+    console.log('test')
+    if (gameboard.checkIsDraw() === true) {
+        showModal(dataTied)
+        gameboard.setDraw()
+        gameboard.renderPoints()
+    } else {
+        return
+    }
+}
+function renderWinner() {
+    if (gameboard.checkWinner('x-marker') === true) {
+        showModal(dataPlayerXWin)
+        gameboard.addPointsP1()
+        gameboard.renderPoints()
+    } else if (gameboard.checkWinner('o-marker') === true) {
+        showModal(dataPlayerOWin)
+        gameboard.addPointsP2()
+        gameboard.renderPoints()
+    }
+}
+function reloadBtn() {
+    document
+        .querySelector('.btn-reload')
+        .addEventListener('click', () => showModal(dataRestart))
+}
+
 function gameStart() {
     const gameField = document.querySelector('.game-field')
     const tiles = [...document.querySelectorAll('.game-tile')]
     const turnImg = document.querySelector('.player-turn-symbol')
-    gameboard.init()
+    reloadBtn()
 
     tiles.forEach((tile) => {
         tile.addEventListener('click', () => {
@@ -74,19 +121,19 @@ function gameStart() {
                 tile.classList.add('x-marker')
                 gameField.setAttribute('data-turn', 'O')
                 turnImg.src = OSymbol
-                gameboard.checkWinner('x-marker')
-                gameboard.checkIsDraw()
+                renderWinner()
+                renderDraw()
             } else {
                 turnImg.setAttribute('data-turn', 'O')
                 tile.classList.add('o-marker')
                 gameField.setAttribute('data-turn', 'X')
                 turnImg.src = xSymbol
                 gameboard.checkWinner('o-marker')
-                gameboard.checkIsDraw()
+                renderWinner()
+                renderDraw()
             }
         })
     })
 }
 
 gameStart()
-GameBoard.restart()

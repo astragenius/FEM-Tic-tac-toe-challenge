@@ -29,7 +29,7 @@ export class Modal {
         this.modalContainer.appendChild(this.render())
     }
 
-    static hideModal() {
+    hideModal() {
         modalContainer.setAttribute('data-modal-active', false)
     }
 

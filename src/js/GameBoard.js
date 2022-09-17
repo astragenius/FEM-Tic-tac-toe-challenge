@@ -40,8 +40,8 @@ let dataPlayerOWin = {
     btnText1: 'quit',
     btnText2: 'next round',
     closeFunc: function () {
-        this.modalContainer = document.querySelector('.modal-container')
-        this.modalContainer.setAttribute('data-modal-active', false)
+        const modalContainer = document.querySelector('.modal-container')
+        modalContainer.setAttribute('data-modal-active', false)
     },
     btnSec1Function: function () {
         console.log('Das ist eine Test function')
@@ -65,30 +65,6 @@ export class GameBoard {
         this.p1 = p1
         this.p2 = p2
         this.draw = 0
-        this.p1Score = document.querySelector('#playerScore')
-        this.tieScore = document.querySelector('#tieScore')
-        this.p2Score = document.querySelector('#player2Score')
-        this.tiles = [...document.querySelectorAll('.game-tile')]
-    }
-
-    init() {
-        this.initReloadBtn()
-    }
-
-    showModal(state) {
-        this.modalContainer = document.querySelector('.modal-container')
-        if (!this.modalContainer.contains(document.querySelector('.modal'))) {
-            this.modal = new Modal(state)
-            this.modal.newState(dataRestart)
-            this.modalContainer.appendChild(this.modal.render())
-        }
-        if (this.modalContainer.getAttribute('data-modal-active') === 'false') {
-            this.modalContainer.setAttribute('data-modal-active', true)
-        }
-    }
-
-    static restart() {
-        console.log(p1)
     }
 
     static resetGameBoard() {
@@ -104,23 +80,16 @@ export class GameBoard {
         gameField.setAttribute('data-turn', 'X')
         turnImg.src = xSymbol
         this.modalContainer.setAttribute('data-modal-active', false)
-        this.restart()
     }
 
     checkIsDraw() {
         const tiles = [...document.querySelectorAll('.game-tile')]
-        const draw = tiles.every((tile) => {
+        return tiles.every((tile) => {
             return (
                 tile.classList.contains('x-marker') ||
                 tile.classList.contains('o-marker')
             )
         })
-
-        if (draw === true || this.checkWinner() === false) {
-            /*  this.showModal(dataTied) */
-            this.setDraw()
-            this.renderPoints()
-        }
     }
 
     checkWinner(currendClass) {
@@ -136,37 +105,19 @@ export class GameBoard {
             [2, 4, 6],
         ]
 
-        const winner = WINING_COMBINATION.some((combination) => {
+        return WINING_COMBINATION.some((combination) => {
             return combination.every((index) => {
                 return tiles[index].classList.contains(currendClass)
             })
         })
-
-        if (winner === true && currendClass === 'x-marker') {
-            this.showModal(dataPlayerXWin)
-            this.addPointsP1()
-        }
-        if (winner === true && currendClass === 'o-marker') {
-            this.showModal(dataPlayerOWin)
-            this.addPointsP2()
-        }
-        this.renderPoints()
-    }
-
-    initReloadBtn() {
-        const btnReload = document.querySelector('.btn-reload')
-
-        btnReload.addEventListener('click', () => {
-            this.showModal(dataRestart)
-        })
     }
 
     addPointsP1() {
-        this.p1.points++
+        this.p1++
     }
 
     addPointsP2() {
-        this.p2.points++
+        this.p2++
     }
 
     setDraw() {
@@ -174,8 +125,11 @@ export class GameBoard {
     }
 
     renderPoints() {
-        this.p1Score.textContent = this.p1.points
-        this.p2Score.textContent = this.p2.points
-        this.tieScore.textContent = this.draw
+        const p1Score = document.querySelector('#playerScore')
+        const tieScore = document.querySelector('#tieScore')
+        const p2Score = document.querySelector('#player2Score')
+        p1Score.textContent = this.p1
+        p2Score.textContent = this.p2
+        tieScore.textContent = this.draw
     }
 }
