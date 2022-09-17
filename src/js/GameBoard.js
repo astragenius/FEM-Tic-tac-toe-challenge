@@ -8,6 +8,9 @@ let dataRestart = {
     playerSymbol: 'neutral',
     btnText1: 'no, cancel',
     btnText2: 'yes, restart',
+    btnSec1Function: () => {
+        GameBoard.resetGameBoard()
+    },
 }
 let dataTied = {
     playerText: '',
@@ -36,11 +39,18 @@ let dataPlayerOWin = {
     playerSymbol: 'O',
     btnText1: 'quit',
     btnText2: 'next round',
+    closeFunc: function () {
+        this.modalContainer = document.querySelector('.modal-container')
+        this.modalContainer.setAttribute('data-modal-active', false)
+    },
+    btnSec1Function: function () {
+        console.log('Das ist eine Test function')
+    },
 }
 
 export class GameBoard {
     constructor(p1, p2) {
-        this.p1 = {
+        /*  this.p1 = {
             symbol: p1.symbol,
             points: p1.points,
             player: p1.player,
@@ -50,8 +60,10 @@ export class GameBoard {
             symbol: p2.symbol,
             points: p2.points,
             player: p2.player,
-        }
+        } */
 
+        this.p1 = p1
+        this.p2 = p2
         this.draw = 0
         this.p1Score = document.querySelector('#playerScore')
         this.tieScore = document.querySelector('#tieScore')
@@ -65,28 +77,34 @@ export class GameBoard {
 
     showModal(state) {
         this.modalContainer = document.querySelector('.modal-container')
-        this.modal = new Modal(state)
+        if (!this.modalContainer.contains(document.querySelector('.modal'))) {
+            this.modal = new Modal(state)
+            this.modal.newState(dataRestart)
+            this.modalContainer.appendChild(this.modal.render())
+        }
         if (this.modalContainer.getAttribute('data-modal-active') === 'false') {
             this.modalContainer.setAttribute('data-modal-active', true)
-            this.modalContainer.innerHTML = this.modal.render()
-            this.modal.addListener(this.modalState, this.resetGameBoard)
         }
     }
 
-    modalState() {
-        console.log('ModalState')
+    static restart() {
+        console.log(p1)
     }
 
-    resetGameBoard() {
+    static resetGameBoard() {
         const tiles = [...document.querySelectorAll('.game-tile')]
         const turnImg = document.querySelector('.player-turn-symbol')
         const gameField = document.querySelector('.game-field')
+        this.modalContainer = document.querySelector('.modal-container')
+
         tiles.forEach((tile) => {
             tile.classList.remove('x-marker')
             tile.classList.remove('o-marker')
         })
         gameField.setAttribute('data-turn', 'X')
         turnImg.src = xSymbol
+        this.modalContainer.setAttribute('data-modal-active', false)
+        this.restart()
     }
 
     checkIsDraw() {
@@ -99,7 +117,7 @@ export class GameBoard {
         })
 
         if (draw === true || this.checkWinner() === false) {
-            this.showModal(dataTied)
+            /*  this.showModal(dataTied) */
             this.setDraw()
             this.renderPoints()
         }

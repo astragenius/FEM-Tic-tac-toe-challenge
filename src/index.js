@@ -49,13 +49,15 @@ let dataPlayerOWin = {
     btnText2: 'next round',
 }
 
+const modalSection = document.createElement('section')
+
 //logo.src = logoImg
 headerTurn.src = xSymbol
 gameBoardLogo.src = logoImg
 
-let p1 = new CreatePlayer('X', 'Player1')
-let p2 = new CreatePlayer('O', 'Player2')
-const gameboard = new GameBoard(p1, p2)
+/* let p1 = new CreatePlayer('X', 'Player1')
+let p2 = new CreatePlayer('O', 'Player2') */
+const gameboard = new GameBoard(0, 0)
 
 //StartToggle.render('.center-container')
 //StartToggle.addListener()
@@ -87,3 +89,4 @@ function gameStart() {
 }
 
 gameStart()
+GameBoard.restart()
