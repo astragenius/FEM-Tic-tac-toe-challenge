@@ -2,52 +2,6 @@ import xSymbol from '../assets/img/toggle-x.svg'
 import OSymbol from '../assets/img/toggle-o.svg'
 import { Modal } from './Modal'
 
-let dataRestart = {
-    playerText: '',
-    headText: 'restart game?',
-    playerSymbol: 'neutral',
-    btnText1: 'no, cancel',
-    btnText2: 'yes, restart',
-    btnSec1Function: () => {
-        GameBoard.resetGameBoard()
-    },
-}
-let dataTied = {
-    playerText: '',
-    headText: 'Round tied',
-    playerSymbol: 'neutral',
-    btnText1: 'quit',
-    btnText2: 'next round',
-}
-let dataPlayerXWin = {
-    playerText: 'you won!',
-    playerSymbol: 'X',
-    headText: 'takes the round',
-    btnText1: 'quit',
-    btnText2: 'next round',
-}
-let dataPlayerXlose = {
-    playerText: 'oh no you lose..',
-    headText: 'takes the round',
-    playerSymbol: 'X',
-    btnText1: 'quit',
-    btnText2: 'next round',
-}
-let dataPlayerOWin = {
-    playerText: 'Player 2 wins',
-    headText: 'takes the round',
-    playerSymbol: 'O',
-    btnText1: 'quit',
-    btnText2: 'next round',
-    closeFunc: function () {
-        const modalContainer = document.querySelector('.modal-container')
-        modalContainer.setAttribute('data-modal-active', false)
-    },
-    btnSec1Function: function () {
-        console.log('Das ist eine Test function')
-    },
-}
-
 export class GameBoard {
     constructor(p1, p2) {
         /*  this.p1 = {

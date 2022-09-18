@@ -17,6 +17,10 @@ let dataRestart = {
     playerSymbol: 'neutral',
     btnText1: 'no, cancel',
     btnText2: 'yes, restart',
+    closeFunc: function () {
+        const modalContainer = document.querySelector('.modal-container')
+        modalContainer.setAttribute('data-modal-active', false)
+    },
     btnSec1Function: () => {
         GameBoard.resetGameBoard()
     },
@@ -27,6 +31,13 @@ let dataTied = {
     playerSymbol: 'neutral',
     btnText1: 'quit',
     btnText2: 'next round',
+    closeFunc: function () {
+        const modalContainer = document.querySelector('.modal-container')
+        modalContainer.setAttribute('data-modal-active', false)
+    },
+    btnSec1Function: function () {
+        GameBoard.resetGameBoard()
+    },
 }
 let dataPlayerXWin = {
     playerText: 'you won!',
@@ -34,6 +45,13 @@ let dataPlayerXWin = {
     headText: 'takes the round',
     btnText1: 'quit',
     btnText2: 'next round',
+    closeFunc: function () {
+        const modalContainer = document.querySelector('.modal-container')
+        modalContainer.setAttribute('data-modal-active', false)
+    },
+    btnSec1Function: function () {
+        GameBoard.resetGameBoard()
+    },
 }
 let dataPlayerXlose = {
     playerText: 'oh no you lose..',
@@ -41,6 +59,13 @@ let dataPlayerXlose = {
     playerSymbol: 'X',
     btnText1: 'quit',
     btnText2: 'next round',
+    closeFunc: function () {
+        const modalContainer = document.querySelector('.modal-container')
+        modalContainer.setAttribute('data-modal-active', false)
+    },
+    btnSec1Function: function () {
+        GameBoard.resetGameBoard()
+    },
 }
 let dataPlayerOWin = {
     playerText: 'Player 2 wins',
@@ -53,7 +78,7 @@ let dataPlayerOWin = {
         modalContainer.setAttribute('data-modal-active', false)
     },
     btnSec1Function: function () {
-        console.log('Das ist eine Test function')
+        GameBoard.resetGameBoard()
     },
 }
 
@@ -77,13 +102,20 @@ function showModal(state) {
         modal.newState(state)
         modalContainer.appendChild(modal.render())
     }
+    if (modalContainer.contains(document.querySelector('.modal'))) {
+        modal.newState(state)
+        modalContainer.appendChild(modal.render())
+    }
     if (modalContainer.getAttribute('data-modal-active') === 'false') {
         modalContainer.setAttribute('data-modal-active', true)
     }
 }
 function renderDraw() {
-    console.log('test')
-    if (gameboard.checkIsDraw() === true) {
+    if (
+        gameboard.checkIsDraw() === true &&
+        gameboard.checkWinner('o-marker') === false &&
+        gameboard.checkWinner('x-marker') === false
+    ) {
         showModal(dataTied)
         gameboard.setDraw()
         gameboard.renderPoints()
@@ -93,10 +125,12 @@ function renderDraw() {
 }
 function renderWinner() {
     if (gameboard.checkWinner('x-marker') === true) {
+        modal.newState(dataPlayerXWin)
         showModal(dataPlayerXWin)
         gameboard.addPointsP1()
         gameboard.renderPoints()
     } else if (gameboard.checkWinner('o-marker') === true) {
+        modal.newState(dataPlayerOWin)
         showModal(dataPlayerOWin)
         gameboard.addPointsP2()
         gameboard.renderPoints()

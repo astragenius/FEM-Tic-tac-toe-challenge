@@ -29,11 +29,16 @@ export class Modal {
         this.modalContainer.appendChild(this.render())
     }
 
-    hideModal() {
-        modalContainer.setAttribute('data-modal-active', false)
+    delModal() {
+        if (this.modalContainer.contains(document.querySelector('.modal'))) {
+            this.modalContainer.removeChild(document.querySelector('.modal'))
+        } else {
+            return
+        }
     }
 
     render() {
+        this.delModal()
         const modalSectionStyle = `modal bg-dark-navy1 full-bleed`
         const modalSection = document.createElement('section')
         modalSection.className += modalSectionStyle
