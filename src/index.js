@@ -23,6 +23,7 @@ let dataRestart = {
     },
     btnSec1Function: () => {
         GameBoard.resetGameBoard()
+        gameboard.resetGame()
     },
 }
 let dataTied = {
@@ -142,31 +143,34 @@ function reloadBtn() {
         .addEventListener('click', () => showModal(dataRestart))
 }
 
-function gameStart() {
+function gameLogic() {
     const gameField = document.querySelector('.game-field')
-    const tiles = [...document.querySelectorAll('.game-tile')]
     const turnImg = document.querySelector('.player-turn-symbol')
+    if (gameField.getAttribute('data-turn') === 'X') {
+        turnImg.setAttribute('data-turn', 'X')
+        this.classList.add('x-marker')
+        gameField.setAttribute('data-turn', 'O')
+        turnImg.src = OSymbol
+        renderWinner()
+        renderDraw()
+    } else {
+        turnImg.setAttribute('data-turn', 'O')
+        this.classList.add('o-marker')
+        gameField.setAttribute('data-turn', 'X')
+        turnImg.src = xSymbol
+        gameboard.checkWinner('o-marker')
+        renderWinner()
+        renderDraw()
+    }
+}
+
+function gameStart() {
+    const tiles = [...document.querySelectorAll('.game-tile')]
+
     reloadBtn()
 
     tiles.forEach((tile) => {
-        tile.addEventListener('click', () => {
-            if (gameField.getAttribute('data-turn') === 'X') {
-                turnImg.setAttribute('data-turn', 'X')
-                tile.classList.add('x-marker')
-                gameField.setAttribute('data-turn', 'O')
-                turnImg.src = OSymbol
-                renderWinner()
-                renderDraw()
-            } else {
-                turnImg.setAttribute('data-turn', 'O')
-                tile.classList.add('o-marker')
-                gameField.setAttribute('data-turn', 'X')
-                turnImg.src = xSymbol
-                gameboard.checkWinner('o-marker')
-                renderWinner()
-                renderDraw()
-            }
-        })
+        tile.addEventListener('click', gameLogic)
     })
 }
 

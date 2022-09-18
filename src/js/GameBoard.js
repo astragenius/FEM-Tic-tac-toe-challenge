@@ -1,6 +1,5 @@
 import xSymbol from '../assets/img/toggle-x.svg'
 import OSymbol from '../assets/img/toggle-o.svg'
-import { Modal } from './Modal'
 
 export class GameBoard {
     constructor(p1, p2) {
@@ -34,6 +33,14 @@ export class GameBoard {
         gameField.setAttribute('data-turn', 'X')
         turnImg.src = xSymbol
         this.modalContainer.setAttribute('data-modal-active', false)
+    }
+
+    resetGame() {
+        this.p1 = 0
+        this.p2 = 0
+        this.draw = 0
+
+        this.renderPoints()
     }
 
     checkIsDraw() {
