@@ -1,5 +1,6 @@
 import xSymbol from '../assets/img/toggle-x.svg'
 import OSymbol from '../assets/img/toggle-o.svg'
+import { doc } from 'prettier'
 
 export class GameBoard {
     constructor(p1, p2) {
@@ -17,6 +18,10 @@ export class GameBoard {
 
         this.p1 = p1
         this.p2 = p2
+        this.player1 = 'Player 1'
+        this.playerX = 'X'
+        this.playerO = 'O'
+        this.player2 = 'Player 2'
         this.draw = 0
     }
 
@@ -83,6 +88,13 @@ export class GameBoard {
 
     setDraw() {
         this.draw++
+    }
+
+    setPlayerName() {
+        const playerName1 = document.getElementById('playerName1')
+        const playerName2 = document.getElementById('playerName2')
+        playerName1.textContent = `${this.playerX} (${this.player1})`
+        playerName2.textContent = `${this.playerO} (${this.player2})`
     }
 
     renderPoints() {

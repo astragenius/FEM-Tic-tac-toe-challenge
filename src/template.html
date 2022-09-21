@@ -19,7 +19,7 @@
                
                <div class="center-container">
 
-                    <section class="game-board">
+                    <section data-game-board="false" class="game-board">
 
                         <header class="game-board-header">
                             
@@ -49,7 +49,7 @@
 
                         <footer class="game-board-footer clr-dark-navy ">
                             <div class="game-status | bg-light-blue padding-block-8">
-                                <p class="fluid-fs-12-14 fw-500 letter-spacing-xss">X(You)</p>
+                                <p id="playerName1" class="fluid-fs-12-14 fw-500 letter-spacing-xss">X(Player 1)</p>
                                 <p id="playerScore" class="fw-700 fluid-fs-20-24 letter-spacing-m">0</p>
                             </div>
                             <div class="game-status | bg-neutral-silver padding-block-8">
@@ -57,14 +57,14 @@
                                 <p id="tieScore" class="fw-700 fluid-fs-20-24 letter-spacing-m">0</p>
                             </div>
                             <div class="game-status | bg-light-yellow padding-block-8">
-                                <p class="fluid-fs-12-14 fw-500 letter-spacing-xss">o(cpu)</p>
+                                <p id="playerName2" class="fluid-fs-12-14 fw-500 letter-spacing-xss">O(Player 2)</p>
                                 <p id="player2Score" class="fw-700 fluid-fs-20-24 letter-spacing-m">0</p>
                             </div>
                         </footer>
                     </section>
 
                 
-                        <!-- <section class="game-menu flow">
+                        <section data-toggle="true" class="game-menu flow">
                             <img class="game-menu-logo | margin-auto" src="./assets/img/logo.svg" alt="">
                                 <div class="toggle-wrapper">
                                 <p class="fs-16 fw-700 clr-neutral-silver uppercase letter-spacing-xs margin-block-24">Pick Player 1's Mark</p>
@@ -84,10 +84,10 @@
                                 <p class="bottom-p | fs-16 fw-500 clr-neutral-silver uppercase letter-spacing-xs margin-block-24">Remember: x Goes First</p>
                             </div>
                             <div class="button-container flow" style="--flow-spacer: 1em">
-                                <button class="btn btn-1 | fs-20 fw-700 letter-spacing-s bg-light-yellow padding-inline-16 padding-block-16 uppercase">New game (vs Cpu)</button>
-                                <button class="btn btn-2 | fs-20 fw-700 letter-spacing-s bg-light-blue padding-inline-16 padding-block-16 uppercase">New game (vs Player)</button>
+                                <button id="btn-pvsCpu" class="btn btn-1 | fs-20 fw-700 letter-spacing-s bg-light-yellow padding-inline-16 padding-block-16 uppercase">New game (vs Cpu)</button>
+                                <button id="btn-pvp" class="btn btn-2 | fs-20 fw-700 letter-spacing-s bg-light-blue padding-inline-16 padding-block-16 uppercase">New game (vs Player)</button>
                             </div>
-                        </section> -->
+                        </section>
                   
                </div>
 

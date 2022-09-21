@@ -1,3 +1,15 @@
+
+.game-board[data-game-board="false"] {
+    display: none;
+}
+
+
+.game-board[data-game-board="true"] {
+    display: grid;
+}
+
+
+
 .game-board {
     display: grid;
     gap: rem(20);

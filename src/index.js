@@ -10,6 +10,9 @@ import { GameBoard } from './js/GameBoard'
 
 const headerTurn = document.querySelector('.player-turn-symbol')
 const gameBoardLogo = document.querySelector('.game-board-logo')
+const logo = document.querySelector('.game-menu-logo')
+
+logo.src = logoImg
 
 let dataRestart = {
     playerText: '',
@@ -22,8 +25,12 @@ let dataRestart = {
         modalContainer.setAttribute('data-modal-active', false)
     },
     btnSec1Function: () => {
+        const board = document.querySelector('.game-board')
+        const toggle = document.querySelector('.game-menu')
         GameBoard.resetGameBoard()
         gameboard.resetGame()
+        board.setAttribute('data-game-board', false)
+        toggle.setAttribute('data-toggle', true)
     },
 }
 let dataTied = {
@@ -48,7 +55,12 @@ let dataPlayerXWin = {
     btnText2: 'next round',
     closeFunc: function () {
         const modalContainer = document.querySelector('.modal-container')
+        GameBoard.resetGameBoard()
         modalContainer.setAttribute('data-modal-active', false)
+        const toggle = document.querySelector('.game-menu')
+        const board = document.querySelector('.game-board')
+        toggle.setAttribute('data-toggle', true)
+        board.setAttribute('data-game-board', false)
     },
     btnSec1Function: function () {
         GameBoard.resetGameBoard()
@@ -82,8 +94,10 @@ let dataPlayerOWin = {
         GameBoard.resetGameBoard()
     },
 }
-
+const gameboard = new GameBoard(0, 0)
+const modal = new Modal(dataRestart)
 const modalSection = document.createElement('section')
+const pvp = document.getElementById('btn-pvp')
 
 //logo.src = logoImg
 headerTurn.src = xSymbol
@@ -91,11 +105,10 @@ gameBoardLogo.src = logoImg
 
 /* let p1 = new CreatePlayer('X', 'Player1')
 let p2 = new CreatePlayer('O', 'Player2') */
-const gameboard = new GameBoard(0, 0)
-const modal = new Modal(dataRestart)
 
-//StartToggle.render('.center-container')
-//StartToggle.addListener()
+const pvc = document.getElementById('btn-pvp')
+
+const pvCpu = document.getElementById('btn-pvsCpu')
 
 function showModal(state) {
     const modalContainer = document.querySelector('.modal-container')
@@ -173,5 +186,19 @@ function gameStart() {
         tile.addEventListener('click', gameLogic)
     })
 }
-
-gameStart()
+pvCpu.addEventListener('click', () => {
+    const toggle = document.querySelector('.game-menu')
+    const board = document.querySelector('.game-board')
+    toggle.setAttribute('data-toggle', false)
+    board.setAttribute('data-game-board', true)
+    gameStart()
+    gameboard.setPlayerName()
+})
+pvc.addEventListener('click', () => {
+    const toggle = document.querySelector('.game-menu')
+    const board = document.querySelector('.game-board')
+    toggle.setAttribute('data-toggle', false)
+    board.setAttribute('data-game-board', true)
+    gameStart()
+    gameboard.setPlayerName()
+})
