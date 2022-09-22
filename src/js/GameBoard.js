@@ -1,6 +1,5 @@
 import xSymbol from '../assets/img/toggle-x.svg'
 import OSymbol from '../assets/img/toggle-o.svg'
-import { doc } from 'prettier'
 
 export class GameBoard {
     constructor(p1, p2) {
