@@ -12,11 +12,7 @@ export const StartToggle = (function () {
             let player2
 
             if (input === true) {
-                player1 = new CreatePlayer('X', 'Player 1')
-                player2 = new CreatePlayer('O', 'Player 2')
             } else if (input === false) {
-                player1 = new CreatePlayer('O', 'Player 1')
-                player2 = new CreatePlayer('X', 'Player 2')
             }
         })
     }

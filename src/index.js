@@ -4,7 +4,7 @@ import logoImg from './assets/img/logo.svg'
 import xSymbol from './assets/img/toggle-x.svg'
 import OSymbol from './assets/img/toggle-o.svg'
 import { Modal } from './js/Modal'
-import { CreatePlayer } from './js/CreatePlayer'
+import { Player } from './js/CreatePlayer'
 import { StartToggle } from './js/StartToggle'
 import { GameBoard } from './js/GameBoard'
 
@@ -202,3 +202,9 @@ pvc.addEventListener('click', () => {
     gameStart()
     gameboard.setPlayerName()
 })
+
+let newPlayer = new Player('Player1', 'X')
+console.log(newPlayer)
+newPlayer.setPoints()
+console.log(newPlayer)
+console.log(newPlayer.getPoints())
