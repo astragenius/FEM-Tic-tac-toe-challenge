@@ -3,18 +3,6 @@ import OSymbol from '../assets/img/toggle-o.svg'
 
 export class GameBoard {
     constructor(p1, p2) {
-        /*  this.p1 = {
-            symbol: p1.symbol,
-            points: p1.points,
-            player: p1.player,
-        }
-
-        this.p2 = {
-            symbol: p2.symbol,
-            points: p2.points,
-            player: p2.player,
-        } */
-
         this.p1 = p1
         this.p2 = p2
         this.player1 = 'Player 1'

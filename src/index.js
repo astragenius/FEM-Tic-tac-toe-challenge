@@ -4,7 +4,7 @@ import logoImg from './assets/img/logo.svg'
 import xSymbol from './assets/img/toggle-x.svg'
 import OSymbol from './assets/img/toggle-o.svg'
 import { Modal } from './js/Modal'
-import { Player } from './js/CreatePlayer'
+import { CPU, Player } from './js/CreatePlayer'
 import { StartToggle } from './js/StartToggle'
 import { GameBoard } from './js/GameBoard'
 
@@ -96,15 +96,10 @@ let dataPlayerOWin = {
 }
 const gameboard = new GameBoard(0, 0)
 const modal = new Modal(dataRestart)
-const modalSection = document.createElement('section')
-const pvp = document.getElementById('btn-pvp')
 
 //logo.src = logoImg
 headerTurn.src = xSymbol
 gameBoardLogo.src = logoImg
-
-/* let p1 = new CreatePlayer('X', 'Player1')
-let p2 = new CreatePlayer('O', 'Player2') */
 
 const pvc = document.getElementById('btn-pvp')
 
@@ -186,25 +181,26 @@ function gameStart() {
         tile.addEventListener('click', gameLogic)
     })
 }
-pvCpu.addEventListener('click', () => {
-    const toggle = document.querySelector('.game-menu')
-    const board = document.querySelector('.game-board')
-    toggle.setAttribute('data-toggle', false)
-    board.setAttribute('data-game-board', true)
-    gameStart()
-    gameboard.setPlayerName()
-})
-pvc.addEventListener('click', () => {
-    const toggle = document.querySelector('.game-menu')
-    const board = document.querySelector('.game-board')
-    toggle.setAttribute('data-toggle', false)
-    board.setAttribute('data-game-board', true)
-    gameStart()
-    gameboard.setPlayerName()
-})
 
-let newPlayer = new Player('Player1', 'X')
-console.log(newPlayer)
-newPlayer.setPoints()
-console.log(newPlayer)
-console.log(newPlayer.getPoints())
+function gameInit() {
+    pvCpu.addEventListener('click', () => {
+        const toggle = document.querySelector('.game-menu')
+        const board = document.querySelector('.game-board')
+        console.log(StartToggle.createPvC())
+        toggle.setAttribute('data-toggle', false)
+        board.setAttribute('data-game-board', true)
+        gameStart()
+        gameboard.setPlayerName()
+    })
+    pvc.addEventListener('click', () => {
+        const toggle = document.querySelector('.game-menu')
+        const board = document.querySelector('.game-board')
+        console.log(StartToggle.createPvP())
+        toggle.setAttribute('data-toggle', false)
+        board.setAttribute('data-game-board', true)
+        gameStart()
+        gameboard.setPlayerName()
+    })
+}
+
+gameInit()

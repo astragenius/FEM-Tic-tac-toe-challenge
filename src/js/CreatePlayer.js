@@ -3,6 +3,7 @@ export class Player {
         this.player = player
         this.symbol = symbol
         this.points = 0
+        this.playerTurn = symbol === 'X' ? true : false
     }
 
     setPoints() {
@@ -21,8 +22,4 @@ export class Player {
     }
 }
 
-export class CPU extends Player {
-    constructor() {
-        super()
-    }
-}
+export class CPU extends Player {}

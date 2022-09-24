@@ -1,21 +1,34 @@
 import logoIMG from '../assets/img/logo.svg'
-import { CreatePlayer } from './CreatePlayer'
+import { Player, CPU } from './CreatePlayer'
 
 export const StartToggle = (function () {
-    const addListener = () => {
-        const logo = document.querySelector('.game-menu-logo')
+    const input = document.querySelector('.checkbox').checked
+    const logo = document.querySelector('.game-menu-logo')
+    logo.src = logoIMG
+    const createPvC = () => {
+        let p1, p2
+        if (input === true) {
+            p1 = new Player('Player1', 'X')
+            p2 = new CPU('CPU', 'O')
+        } else if (input === false) {
+            p1 = new Player('Player1', 'O')
+            p2 = new CPU('CPU', 'X')
+        }
 
-        logo.src = logoIMG
-        document.querySelector('.btn-2').addEventListener('click', () => {
-            const input = document.querySelector('.checkbox').checked
-            let player1
-            let player2
+        return [p1, p2]
+    }
+    const createPvP = () => {
+        let p1, p2
+        if (input === true) {
+            p1 = new Player('Player1', 'X')
+            p2 = new Player('Player2', 'O')
+        } else if (input === false) {
+            p1 = new Player('Player1', 'O')
+            p2 = new Player('Player2', 'X')
+        }
 
-            if (input === true) {
-            } else if (input === false) {
-            }
-        })
+        return p1, p2
     }
 
-    return { addListener }
+    return { createPvC, createPvP }
 })()
