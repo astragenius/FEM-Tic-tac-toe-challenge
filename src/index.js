@@ -31,6 +31,7 @@ let dataRestart = {
         const toggle = document.querySelector('.game-menu')
         GameBoard.resetGameBoard()
         gameboard.resetGame()
+        gameboard = null
         board.setAttribute('data-game-board', false)
         toggle.setAttribute('data-toggle', true)
     },
@@ -102,29 +103,23 @@ const modal = new Modal(dataRestart)
 const createPvC = () => {
     const input = document.querySelector('.checkbox').checked
     if (input === true) {
-        /* p1 = new Player('Player1', 'X')
-        p2 = new CPU('CPU', 'O') */
-        gameboard = new GameBoard(
-            new Player('Player1', 'X'),
-            new CPU('CPU', 'O')
-        )
+        gameboard = new GameBoard(new Player('YOU', 'X'), new CPU('CPU', 'O'))
     } else if (input === false) {
-        /* p1 = new Player('Player1', 'O')
-        p2 = new CPU('CPU', 'X') */
-        gameboard = new GameBoard(
-            new Player('Player1', 'O'),
-            new CPU('CPU', 'X')
-        )
+        gameboard = new GameBoard(new Player('YOU', 'O'), new CPU('CPU', 'X'))
     }
 }
 const createPvP = () => {
     const input = document.querySelector('.checkbox').checked
     if (input === true) {
-        p1 = new Player('Player1', 'X')
-        p2 = new Player('Player2', 'O')
+        gameboard = new GameBoard(
+            new Player('Player1', 'X'),
+            new Player('Player2', 'O')
+        )
     } else if (input === false) {
-        p1 = new Player('Player1', 'O')
-        p2 = new Player('Player2', 'X')
+        gameboard = new GameBoard(
+            new Player('Player1', 'O'),
+            new Player('Player2', 'X')
+        )
     }
 }
 
@@ -185,11 +180,14 @@ function reloadBtn() {
 function gameLogic() {
     const gameField = document.querySelector('.game-field')
     const turnImg = document.querySelector('.player-turn-symbol')
+    gameboard.p2.cpuMove()
     if (gameField.getAttribute('data-turn') === 'X') {
         turnImg.setAttribute('data-turn', 'X')
+
         this.classList.add('x-marker')
         gameField.setAttribute('data-turn', 'O')
         turnImg.src = OSymbol
+
         renderWinner()
         renderDraw()
     } else {
@@ -198,6 +196,7 @@ function gameLogic() {
         gameField.setAttribute('data-turn', 'X')
         turnImg.src = xSymbol
         gameboard.checkWinner('o-marker')
+
         renderWinner()
         renderDraw()
     }
@@ -205,7 +204,7 @@ function gameLogic() {
 
 function gameStart() {
     const tiles = [...document.querySelectorAll('.game-tile')]
-
+    gameboard.p2.cpuMove()
     reloadBtn()
 
     tiles.forEach((tile) => {

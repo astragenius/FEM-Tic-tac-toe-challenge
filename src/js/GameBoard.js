@@ -24,8 +24,8 @@ export class GameBoard {
     }
 
     resetGame() {
-        this.p1 = 0
-        this.p2 = 0
+        this.p1.points = 0
+        this.p2.points = 0
         this.draw = 0
 
         this.renderPoints()
@@ -62,11 +62,11 @@ export class GameBoard {
     }
 
     addPointsP1() {
-        this.p1++
+        this.p1.points++
     }
 
     addPointsP2() {
-        this.p2++
+        this.p2.points++
     }
 
     setDraw() {
@@ -90,8 +90,8 @@ export class GameBoard {
         const p1Score = document.querySelector('#playerScore')
         const tieScore = document.querySelector('#tieScore')
         const p2Score = document.querySelector('#player2Score')
-        p1Score.textContent = this.p1
-        p2Score.textContent = this.p2
+        p1Score.textContent = this.p1.points
+        p2Score.textContent = this.p2.points
         tieScore.textContent = this.draw
     }
 }
