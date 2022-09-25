@@ -12,6 +12,8 @@ const headerTurn = document.querySelector('.player-turn-symbol')
 const gameBoardLogo = document.querySelector('.game-board-logo')
 const logo = document.querySelector('.game-menu-logo')
 
+let gameboard
+
 logo.src = logoImg
 
 let dataRestart = {
@@ -94,8 +96,37 @@ let dataPlayerOWin = {
         GameBoard.resetGameBoard()
     },
 }
-const gameboard = new GameBoard(0, 0)
+
 const modal = new Modal(dataRestart)
+
+const createPvC = () => {
+    const input = document.querySelector('.checkbox').checked
+    if (input === true) {
+        /* p1 = new Player('Player1', 'X')
+        p2 = new CPU('CPU', 'O') */
+        gameboard = new GameBoard(
+            new Player('Player1', 'X'),
+            new CPU('CPU', 'O')
+        )
+    } else if (input === false) {
+        /* p1 = new Player('Player1', 'O')
+        p2 = new CPU('CPU', 'X') */
+        gameboard = new GameBoard(
+            new Player('Player1', 'O'),
+            new CPU('CPU', 'X')
+        )
+    }
+}
+const createPvP = () => {
+    const input = document.querySelector('.checkbox').checked
+    if (input === true) {
+        p1 = new Player('Player1', 'X')
+        p2 = new Player('Player2', 'O')
+    } else if (input === false) {
+        p1 = new Player('Player1', 'O')
+        p2 = new Player('Player2', 'X')
+    }
+}
 
 //logo.src = logoImg
 headerTurn.src = xSymbol
@@ -186,7 +217,7 @@ function gameInit() {
     pvCpu.addEventListener('click', () => {
         const toggle = document.querySelector('.game-menu')
         const board = document.querySelector('.game-board')
-        console.log(StartToggle.createPvC())
+        createPvC()
         toggle.setAttribute('data-toggle', false)
         board.setAttribute('data-game-board', true)
         gameStart()
@@ -195,7 +226,7 @@ function gameInit() {
     pvc.addEventListener('click', () => {
         const toggle = document.querySelector('.game-menu')
         const board = document.querySelector('.game-board')
-        console.log(StartToggle.createPvP())
+        createPvP()
         toggle.setAttribute('data-toggle', false)
         board.setAttribute('data-game-board', true)
         gameStart()

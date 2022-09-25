@@ -3,13 +3,9 @@ import OSymbol from '../assets/img/toggle-o.svg'
 
 export class GameBoard {
     constructor(p1, p2) {
+        this.draw = 0
         this.p1 = p1
         this.p2 = p2
-        this.player1 = 'Player 1'
-        this.playerX = 'X'
-        this.playerO = 'O'
-        this.player2 = 'Player 2'
-        this.draw = 0
     }
 
     static resetGameBoard() {
@@ -80,8 +76,14 @@ export class GameBoard {
     setPlayerName() {
         const playerName1 = document.getElementById('playerName1')
         const playerName2 = document.getElementById('playerName2')
-        playerName1.textContent = `${this.playerX} (${this.player1})`
-        playerName2.textContent = `${this.playerO} (${this.player2})`
+        if (this.p1.symbol === 'X' && this.p2.symbol === 'O') {
+            playerName1.textContent = `${this.p1.symbol} (${this.p1.player})`
+            playerName2.textContent = `${this.p2.symbol} (${this.p2.player})`
+        }
+        if (this.p1.symbol === 'O' && this.p2.symbol === 'X') {
+            playerName1.textContent = `${this.p2.symbol} (${this.p2.player})`
+            playerName2.textContent = `${this.p1.symbol} (${this.p1.player})`
+        }
     }
 
     renderPoints() {
