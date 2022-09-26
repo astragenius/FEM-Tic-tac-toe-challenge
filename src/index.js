@@ -182,11 +182,11 @@ function gameLogic() {
     const turnImg = document.querySelector('.player-turn-symbol')
     gameboard.p2.cpuMove()
     if (gameField.getAttribute('data-turn') === 'X') {
-        turnImg.setAttribute('data-turn', 'X')
+        /* turnImg.setAttribute('data-turn', 'X')
 
         this.classList.add('x-marker')
-        gameField.setAttribute('data-turn', 'O')
-        turnImg.src = OSymbol
+        gameField.setAttribute('data-turn', 'O') */
+        //turnImg.src = OSymbol
 
         renderWinner()
         renderDraw()

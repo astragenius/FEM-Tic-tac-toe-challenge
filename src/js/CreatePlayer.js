@@ -31,11 +31,12 @@ export class CPU extends Player {
         const gameField = document.querySelector('.game-field')
         for (let i = 0; i < tiles.length; i++) {
             if (
-                !tiles[i].classList.contains('x-marker') ||
+                !tiles[i].classList.contains('x-marker') &&
                 !tiles[i].classList.contains('o-marker')
             ) {
-                tiles[i].classList.add('x-marker')
+                turnImg.setAttribute('data-turn', 'O')
                 gameField.setAttribute('data-turn', 'O')
+                tiles[i].classList.add('x-marker')
                 turnImg.src = OSymbol
                 break
             }
