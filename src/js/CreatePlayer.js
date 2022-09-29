@@ -29,17 +29,27 @@ export class CPU extends Player {
         const tiles = [...document.querySelectorAll('.game-tile')]
         const turnImg = document.querySelector('.player-turn-symbol')
         const gameField = document.querySelector('.game-field')
-        for (let i = 0; i < tiles.length; i++) {
-            if (
-                !tiles[i].classList.contains('x-marker') &&
-                !tiles[i].classList.contains('o-marker')
-            ) {
-                turnImg.setAttribute('data-turn', 'O')
-                gameField.setAttribute('data-turn', 'O')
-                tiles[i].classList.add('x-marker')
-                turnImg.src = OSymbol
-                break
-            }
+
+        function randomNumber(num) {
+            return Math.floor(Math.random() * num)
         }
+        function setSymbol(index) {
+            filteredTiles[index].classList.add('x-marker')
+            turnImg.src = OSymbol
+            gameField.setAttribute('data-turn', 'O')
+        }
+
+        const filteredTiles = tiles.filter((tile) => {
+            return (
+                !tile.classList.contains('x-marker') &&
+                !tile.classList.contains('o-marker')
+            )
+        })
+
+        let tilesLength = filteredTiles.length
+        let randomTile = randomNumber(tilesLength)
+        setSymbol(randomTile)
+
+        console.log(filteredTiles)
     }
 }
