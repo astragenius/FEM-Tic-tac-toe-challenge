@@ -81,6 +81,7 @@ let dataPlayerXlose = {
     },
     btnSec1Function: function () {
         GameBoard.resetGameBoard()
+        gameStart()
     },
 }
 let dataPlayerOWin = {
@@ -198,6 +199,7 @@ function gameLogic() {
         gameboard.checkWinner('o-marker')
 
         renderWinner()
+        gameboard.p2.cpuMove()
         renderDraw()
     }
 }

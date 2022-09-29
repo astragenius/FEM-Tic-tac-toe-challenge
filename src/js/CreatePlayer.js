@@ -49,7 +49,5 @@ export class CPU extends Player {
         let tilesLength = filteredTiles.length
         let randomTile = randomNumber(tilesLength)
         setSymbol(randomTile)
-
-        console.log(filteredTiles)
     }
 }
