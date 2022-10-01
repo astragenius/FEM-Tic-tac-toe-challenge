@@ -198,8 +198,8 @@ function gameLogic() {
         turnImg.src = xSymbol
         gameboard.checkWinner('o-marker')
 
-        renderWinner()
         gameboard.p2.cpuMove()
+        renderWinner()
         renderDraw()
     }
 }
