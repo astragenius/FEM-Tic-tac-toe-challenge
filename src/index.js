@@ -177,8 +177,9 @@ function reloadBtn() {
         .querySelector('.btn-reload')
         .addEventListener('click', () => showModal(dataRestart))
 }
+function gameLogicPVC() {}
 
-function gameLogic() {
+function gameLogicPVP() {
     const gameField = document.querySelector('.game-field')
     const turnImg = document.querySelector('.player-turn-symbol')
 
@@ -197,8 +198,8 @@ function gameLogic() {
         gameField.setAttribute('data-turn', 'X')
         turnImg.src = xSymbol
         gameboard.checkWinner('o-marker')
+        gameboard.p2.playerTurn = true
 
-        gameboard.p2.cpuMove()
         renderWinner()
         renderDraw()
     }
@@ -206,12 +207,19 @@ function gameLogic() {
 
 function gameStart() {
     const tiles = [...document.querySelectorAll('.game-tile')]
-    gameboard.p2.cpuMove()
+
     reloadBtn()
 
-    tiles.forEach((tile) => {
-        tile.addEventListener('click', gameLogic)
-    })
+    if (gameboard.p2.getPlayer() === 'CPU') {
+        gameboard.p2.cpuMove()
+        tiles.forEach((tile) => {
+            tile.addEventListener('click', gameLogicPVC)
+        })
+    } else {
+        tiles.forEach((tile) => {
+            tile.addEventListener('click', gameLogicPVP)
+        })
+    }
 }
 
 function gameInit() {

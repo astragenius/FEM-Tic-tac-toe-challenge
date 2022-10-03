@@ -26,6 +26,9 @@ export class Player {
 
 export class CPU extends Player {
     cpuMove() {
+        let self = this
+        console.log(self.playerTurn)
+
         const tiles = [...document.querySelectorAll('.game-tile')]
         const turnImg = document.querySelector('.player-turn-symbol')
         const gameField = document.querySelector('.game-field')
@@ -35,8 +38,10 @@ export class CPU extends Player {
         }
         function setSymbol(index) {
             filteredTiles[index].classList.add('x-marker')
-            turnImg.src = OSymbol
             gameField.setAttribute('data-turn', 'O')
+            turnImg.setAttribute('data-turn', 'O')
+            turnImg.src = OSymbol
+            self.playerTurn = false
         }
 
         const filteredTiles = tiles.filter((tile) => {
