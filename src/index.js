@@ -177,7 +177,10 @@ function reloadBtn() {
         .querySelector('.btn-reload')
         .addEventListener('click', () => showModal(dataRestart))
 }
-function gameLogicPVC() {}
+function gameLogicPVC() {
+    const gameField = document.querySelector('.game-field')
+    const turnImg = document.querySelector('.player-turn-symbol')
+}
 
 function gameLogicPVP() {
     const gameField = document.querySelector('.game-field')
