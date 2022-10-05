@@ -15,8 +15,8 @@ export class GameBoard {
         this.modalContainer = document.querySelector('.modal-container')
 
         tiles.forEach((tile) => {
-            tile.classList.remove('x-marker')
-            tile.classList.remove('o-marker')
+            tile.classList.remove('X-marker')
+            tile.classList.remove('O-marker')
         })
         gameField.setAttribute('data-turn', 'X')
         turnImg.src = xSymbol
@@ -35,8 +35,8 @@ export class GameBoard {
         const tiles = [...document.querySelectorAll('.game-tile')]
         return tiles.every((tile) => {
             return (
-                tile.classList.contains('x-marker') ||
-                tile.classList.contains('o-marker')
+                tile.classList.contains('X-marker') ||
+                tile.classList.contains('O-marker')
             )
         })
     }

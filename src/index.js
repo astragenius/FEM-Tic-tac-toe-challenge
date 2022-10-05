@@ -149,8 +149,8 @@ function showModal(state) {
 function renderDraw() {
     if (
         gameboard.checkIsDraw() === true &&
-        gameboard.checkWinner('o-marker') === false &&
-        gameboard.checkWinner('x-marker') === false
+        gameboard.checkWinner('O-marker') === false &&
+        gameboard.checkWinner('X-marker') === false
     ) {
         showModal(dataTied)
         gameboard.setDraw()
@@ -160,12 +160,12 @@ function renderDraw() {
     }
 }
 function renderWinner() {
-    if (gameboard.checkWinner('x-marker') === true) {
+    if (gameboard.checkWinner('X-marker') === true) {
         modal.newState(dataPlayerXWin)
         showModal(dataPlayerXWin)
         gameboard.addPointsP1()
         gameboard.renderPoints()
-    } else if (gameboard.checkWinner('o-marker') === true) {
+    } else if (gameboard.checkWinner('O-marker') === true) {
         modal.newState(dataPlayerOWin)
         showModal(dataPlayerOWin)
         gameboard.addPointsP2()
@@ -180,6 +180,22 @@ function reloadBtn() {
 function gameLogicPVC() {
     const gameField = document.querySelector('.game-field')
     const turnImg = document.querySelector('.player-turn-symbol')
+
+    if (gameboard.p2.playerTurn === false) {
+        gameField.setAttribute('data-turn', gameboard.p1.symbol)
+        turnImg.setAttribute('data-turn', gameboard.p1.symbol)
+        this.classList.add(`${gameboard.p1.symbol}-marker`)
+        gameboard.p2.playerTurn = true
+        gameboard.p1.playerTurn = false
+        gameboard.p2.cpuMove()
+        renderWinner()
+        renderDraw()
+    } else {
+        gameboard.p2.cpuMove()
+        gameboard.p1.playerTurn = true
+        renderWinner()
+        renderDraw()
+    }
 }
 
 function gameLogicPVP() {
@@ -189,7 +205,7 @@ function gameLogicPVP() {
     if (gameField.getAttribute('data-turn') === 'X') {
         turnImg.setAttribute('data-turn', 'X')
 
-        this.classList.add('x-marker')
+        this.classList.add('X-marker')
         gameField.setAttribute('data-turn', 'O')
         turnImg.src = OSymbol
 
@@ -197,10 +213,10 @@ function gameLogicPVP() {
         renderDraw()
     } else {
         turnImg.setAttribute('data-turn', 'O')
-        this.classList.add('o-marker')
+        this.classList.add('O-marker')
         gameField.setAttribute('data-turn', 'X')
         turnImg.src = xSymbol
-        gameboard.checkWinner('o-marker')
+        gameboard.checkWinner('O-marker')
         gameboard.p2.playerTurn = true
 
         renderWinner()
@@ -214,7 +230,9 @@ function gameStart() {
     reloadBtn()
 
     if (gameboard.p2.getPlayer() === 'CPU') {
-        gameboard.p2.cpuMove()
+        if (gameboard.p2.playerTurn === true) {
+            gameboard.p2.cpuMove()
+        }
         tiles.forEach((tile) => {
             tile.addEventListener('click', gameLogicPVC)
         })

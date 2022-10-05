@@ -1,4 +1,4 @@
-import xSymbol from '../assets/img/toggle-x.svg'
+import XSymbol from '../assets/img/toggle-x.svg'
 import OSymbol from '../assets/img/toggle-o.svg'
 export class Player {
     constructor(player, symbol) {
@@ -27,7 +27,13 @@ export class Player {
 export class CPU extends Player {
     cpuMove() {
         let self = this
-        console.log(self.playerTurn)
+
+        let oponent
+        if (self.symbol === 'X') {
+            oponent = 'O'
+        } else {
+            oponent = 'X'
+        }
 
         const tiles = [...document.querySelectorAll('.game-tile')]
         const turnImg = document.querySelector('.player-turn-symbol')
@@ -37,17 +43,21 @@ export class CPU extends Player {
             return Math.floor(Math.random() * num)
         }
         function setSymbol(index) {
-            filteredTiles[index].classList.add('x-marker')
-            gameField.setAttribute('data-turn', 'O')
-            turnImg.setAttribute('data-turn', 'O')
-            turnImg.src = OSymbol
+            filteredTiles[index].classList.add(`${self.symbol}-marker`)
+            gameField.setAttribute('data-turn', oponent)
+            turnImg.setAttribute('data-turn', oponent)
             self.playerTurn = false
+            if (oponent === 'X') {
+                turnImg.src = XSymbol
+            } else {
+                turnImg.src = OSymbol
+            }
         }
 
         const filteredTiles = tiles.filter((tile) => {
             return (
-                !tile.classList.contains('x-marker') &&
-                !tile.classList.contains('o-marker')
+                !tile.classList.contains('X-marker') &&
+                !tile.classList.contains('O-marker')
             )
         })
 
