@@ -43,6 +43,11 @@ export class CPU extends Player {
             return Math.floor(Math.random() * num)
         }
         function setSymbol(index) {
+            if (filteredTiles.length === 0) {
+                console.log('test')
+                return
+            }
+
             filteredTiles[index].classList.add(`${self.symbol}-marker`)
             gameField.setAttribute('data-turn', oponent)
             turnImg.setAttribute('data-turn', oponent)
