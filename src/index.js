@@ -98,6 +98,20 @@ let dataPlayerOWin = {
         GameBoard.resetGameBoard()
     },
 }
+let dataPlayerOlose = {
+    playerText: 'Player 1 wins',
+    headText: 'takes the round',
+    playerSymbol: 'X',
+    btnText1: 'quit',
+    btnText2: 'next round',
+    closeFunc: function () {
+        const modalContainer = document.querySelector('.modal-container')
+        modalContainer.setAttribute('data-modal-active', false)
+    },
+    btnSec1Function: function () {
+        GameBoard.resetGameBoard()
+    },
+}
 
 const modal = new Modal(dataRestart)
 
