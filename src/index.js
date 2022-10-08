@@ -146,14 +146,14 @@ const pvc = document.getElementById('btn-pvp')
 
 const pvCpu = document.getElementById('btn-pvsCpu')
 
-function showModal(state) {
+function showModal(state, player) {
     const modalContainer = document.querySelector('.modal-container')
     if (!modalContainer.contains(document.querySelector('.modal'))) {
-        modal.newState(state)
+        modal.newState(state, player)
         modalContainer.appendChild(modal.render())
     }
     if (modalContainer.contains(document.querySelector('.modal'))) {
-        modal.newState(state)
+        modal.newState(state, player)
         modalContainer.appendChild(modal.render())
     }
     if (modalContainer.getAttribute('data-modal-active') === 'false') {
@@ -173,15 +173,16 @@ function renderDraw() {
         return
     }
 }
-function renderWinner() {
+function renderWinner(player, player2) {
+    //console.log(player)
     if (gameboard.checkWinner('X-marker') === true) {
         modal.newState(dataPlayerXWin)
-        showModal(dataPlayerXWin)
+        showModal(dataPlayerXWin, player)
         gameboard.addPointsP1()
         gameboard.renderPoints()
     } else if (gameboard.checkWinner('O-marker') === true) {
         modal.newState(dataPlayerOWin)
-        showModal(dataPlayerOWin)
+        showModal(dataPlayerOWin, player2)
         gameboard.addPointsP2()
         gameboard.renderPoints()
     }
@@ -202,40 +203,34 @@ function gameLogicPVC() {
         gameboard.p2.playerTurn = true
         gameboard.p1.playerTurn = false
         gameboard.p2.cpuMove()
-        renderWinner()
-        renderDraw()
     } else {
         gameboard.p2.cpuMove()
         gameboard.p1.playerTurn = true
-        renderWinner()
-        renderDraw()
     }
+    renderWinner()
+    renderDraw()
 }
 
 function gameLogicPVP() {
     const gameField = document.querySelector('.game-field')
     const turnImg = document.querySelector('.player-turn-symbol')
 
-    if (gameField.getAttribute('data-turn') === 'X') {
-        turnImg.setAttribute('data-turn', 'X')
-
-        this.classList.add('X-marker')
-        gameField.setAttribute('data-turn', 'O')
-        turnImg.src = OSymbol
-
-        renderWinner()
-        renderDraw()
-    } else {
-        turnImg.setAttribute('data-turn', 'O')
-        this.classList.add('O-marker')
-        gameField.setAttribute('data-turn', 'X')
-        turnImg.src = xSymbol
-        gameboard.checkWinner('O-marker')
+    if (gameboard.p2.playerTurn === false) {
+        turnImg.setAttribute('data-turn', gameboard.p1.symbol)
+        this.classList.add(`${gameboard.p1.symbol}-marker`)
+        gameField.setAttribute('data-turn', gameboard.p2.symbol)
         gameboard.p2.playerTurn = true
-
-        renderWinner()
-        renderDraw()
+        gameboard.p1.playerTurn = false
+    } else {
+        turnImg.setAttribute('data-turn', gameboard.p2.symbol)
+        this.classList.add(`${gameboard.p2.symbol}-marker`)
+        gameField.setAttribute('data-turn', gameboard.p1.symbol)
+        gameboard.p1.playerTurn = true
+        gameboard.p2.playerTurn = false
     }
+
+    renderWinner()
+    renderDraw()
 }
 
 function gameStart() {

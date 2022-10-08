@@ -13,7 +13,7 @@ export class Modal {
         this.modalContainer = document.querySelector('.modal-container')
     }
 
-    newState(newProps) {
+    newState(newProps, player) {
         this.state = {
             playerText: newProps.playerText,
             headText: newProps.headText,
@@ -23,6 +23,8 @@ export class Modal {
             closeFunc: newProps.closeFunc,
             btnSec1Function: newProps.btnSec1Function,
         }
+        this.player = player
+        console.log(player)
     }
 
     update() {
