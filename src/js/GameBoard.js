@@ -19,6 +19,7 @@ export class GameBoard {
             tile.classList.remove('O-marker')
         })
         gameField.setAttribute('data-turn', 'X')
+        turnImg.setAttribute('data-turn', 'O')
         turnImg.src = xSymbol
         this.modalContainer.setAttribute('data-modal-active', false)
     }

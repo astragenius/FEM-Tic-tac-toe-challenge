@@ -1,7 +1,7 @@
 export class Modal {
     constructor(props) {
         this.state = {
-            playerText: props.playerText,
+            //playerText: props.playerText,
             headText: props.headText,
             playerSymbol: props.playerSymbol,
             btnText1: props.btnText1,
@@ -24,7 +24,6 @@ export class Modal {
             btnSec1Function: newProps.btnSec1Function,
         }
         this.player = player
-        console.log(player)
     }
 
     update() {

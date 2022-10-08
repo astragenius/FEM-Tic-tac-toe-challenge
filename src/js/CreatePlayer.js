@@ -44,7 +44,6 @@ export class CPU extends Player {
         }
         function setSymbol(index) {
             if (filteredTiles.length === 0) {
-                console.log('test')
                 return
             }
 

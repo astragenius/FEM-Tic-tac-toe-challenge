@@ -17,7 +17,7 @@ let gameboard
 logo.src = logoImg
 
 let dataRestart = {
-    playerText: '',
+    //playerText: '',
     headText: 'restart game?',
     playerSymbol: 'neutral',
     btnText1: 'no, cancel',
@@ -173,18 +173,21 @@ function renderDraw() {
         return
     }
 }
-function renderWinner(player, player2) {
-    //console.log(player)
+function renderWinner(player) {
     if (gameboard.checkWinner('X-marker') === true) {
-        modal.newState(dataPlayerXWin)
+        modal.newState(dataPlayerXWin, player)
         showModal(dataPlayerXWin, player)
         gameboard.addPointsP1()
         gameboard.renderPoints()
+        gameboard.p1.playerTurn = true
+        gameboard.p2.playerTurn = false
     } else if (gameboard.checkWinner('O-marker') === true) {
-        modal.newState(dataPlayerOWin)
-        showModal(dataPlayerOWin, player2)
+        modal.newState(dataPlayerOWin, player)
+        showModal(dataPlayerOWin, player)
         gameboard.addPointsP2()
         gameboard.renderPoints()
+        gameboard.p1.playerTurn = true
+        gameboard.p2.playerTurn = false
     }
 }
 function reloadBtn() {
@@ -217,20 +220,24 @@ function gameLogicPVP() {
 
     if (gameboard.p2.playerTurn === false) {
         turnImg.setAttribute('data-turn', gameboard.p1.symbol)
+
         this.classList.add(`${gameboard.p1.symbol}-marker`)
         gameField.setAttribute('data-turn', gameboard.p2.symbol)
+
         gameboard.p2.playerTurn = true
         gameboard.p1.playerTurn = false
+        renderWinner(gameboard.p1)
     } else {
         turnImg.setAttribute('data-turn', gameboard.p2.symbol)
         this.classList.add(`${gameboard.p2.symbol}-marker`)
         gameField.setAttribute('data-turn', gameboard.p1.symbol)
         gameboard.p1.playerTurn = true
         gameboard.p2.playerTurn = false
+        renderWinner(gameboard.p2)
     }
 
-    renderWinner()
     renderDraw()
+    console.log(gameboard.p1.playerTurn)
 }
 
 function gameStart() {
