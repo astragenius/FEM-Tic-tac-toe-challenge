@@ -53,7 +53,6 @@ let dataTied = {
 }
 let dataPlayerXWin = {
     playerText: 'you won!',
-    playerSymbol: 'X',
     headText: 'takes the round',
     btnText1: 'quit',
     btnText2: 'next round',
@@ -74,7 +73,6 @@ let dataPlayerXWin = {
 let dataPlayerXlose = {
     playerText: 'oh no you lose..',
     headText: 'takes the round',
-    playerSymbol: 'X',
     btnText1: 'quit',
     btnText2: 'next round',
     closeFunc: function () {
@@ -89,7 +87,7 @@ let dataPlayerXlose = {
 let dataPlayerOWin = {
     playerText: 'Player 2 wins',
     headText: 'takes the round',
-    playerSymbol: 'O',
+
     btnText1: 'quit',
     btnText2: 'next round',
     closeFunc: function () {
@@ -104,7 +102,7 @@ let dataPlayerOWin = {
 let dataPlayerOlose = {
     playerText: 'Player 1 wins',
     headText: 'takes the round',
-    playerSymbol: 'X',
+
     btnText1: 'quit',
     btnText2: 'next round',
     closeFunc: function () {
@@ -176,7 +174,7 @@ function renderDraw() {
         return
     }
 }
-function renderWinner(player) {
+export function renderWinner(player) {
     if (gameboard.checkWinner('X-marker') === true) {
         modal.newState(dataPlayerXWin, player)
         showModal(dataPlayerXWin, player)
@@ -190,6 +188,7 @@ function renderWinner(player) {
             gameboard.p2.playerTurn = true
         }
     } else if (gameboard.checkWinner('O-marker') === true) {
+        console.log(player)
         modal.newState(dataPlayerOWin, player)
         showModal(dataPlayerOWin, player)
         gameboard.addPointsP2()
@@ -222,11 +221,13 @@ function gameLogicPVC() {
         gameboard.p1.playerTurn = false
 
         gameboard.p2.cpuMove()
+
         renderWinner(gameboard.p1)
     } else {
         gameboard.p2.cpuMove()
         gameboard.p1.playerTurn = true
         gameboard.p2.playerTurn = false
+
         renderWinner(gameboard.p2)
     }
 

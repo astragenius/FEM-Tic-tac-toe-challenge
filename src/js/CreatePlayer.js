@@ -1,5 +1,7 @@
 import XSymbol from '../assets/img/toggle-x.svg'
 import OSymbol from '../assets/img/toggle-o.svg'
+import { renderWinner } from '..'
+
 export class Player {
     constructor(player, symbol) {
         this.player = player
@@ -49,6 +51,8 @@ export class CPU extends Player {
 
             filteredTiles[index].classList.add(`${self.symbol}-marker`)
             self.playerTurn = false
+
+            renderWinner(self)
             gameField.setAttribute('data-turn', oponent)
             turnImg.setAttribute('data-turn', oponent)
 

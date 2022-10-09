@@ -50,12 +50,20 @@ export class Modal {
         const playerTextStyle = `uppercase clr-neutral-silver fw-700 fs-14 letter-spacing-xs margin-block-end-24`
         const playerText = document.createElement('p')
         playerText.className += playerTextStyle
-        playerText.textContent = this.player.player
+        if (this.player.player === '') {
+            playerText.textContent = ``
+        } else if (this.player.player === 'YOU') {
+            playerText.textContent = `${this.player.player} won!`
+        } else if (this.player.player === 'CPU') {
+            playerText.textContent = `Oh no, you lost...`
+        } else {
+            playerText.textContent = `${this.player.player} winns!`
+        }
 
         const headTextStyle = `modal-titel | fs-24 uppercase clr-neutral-silver fw-700 letter-spacing-m margin-block-end-24`
         const headText = document.createElement('h3')
         headText.className += headTextStyle
-        headText.setAttribute('data-winner', this.state.playerSymbol)
+        headText.setAttribute('data-winner', this.player.symbol)
         headText.textContent = this.state.headText
 
         const buttonContainer = document.createElement('div')
