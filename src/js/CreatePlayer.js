@@ -50,7 +50,7 @@ export class CPU extends Player {
             filteredTiles[index].classList.add(`${self.symbol}-marker`)
             gameField.setAttribute('data-turn', oponent)
             turnImg.setAttribute('data-turn', oponent)
-            self.playerTurn = false
+
             if (oponent === 'X') {
                 turnImg.src = XSymbol
             } else {

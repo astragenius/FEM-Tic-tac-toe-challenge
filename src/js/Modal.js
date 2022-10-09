@@ -1,5 +1,5 @@
 export class Modal {
-    constructor(props) {
+    constructor(props, player = '') {
         this.state = {
             //playerText: props.playerText,
             headText: props.headText,
@@ -13,7 +13,7 @@ export class Modal {
         this.modalContainer = document.querySelector('.modal-container')
     }
 
-    newState(newProps, player) {
+    newState(newProps, player = '') {
         this.state = {
             playerText: newProps.playerText,
             headText: newProps.headText,
@@ -50,7 +50,7 @@ export class Modal {
         const playerTextStyle = `uppercase clr-neutral-silver fw-700 fs-14 letter-spacing-xs margin-block-end-24`
         const playerText = document.createElement('p')
         playerText.className += playerTextStyle
-        playerText.textContent = this.state.playerText
+        playerText.textContent = this.player.player
 
         const headTextStyle = `modal-titel | fs-24 uppercase clr-neutral-silver fw-700 letter-spacing-m margin-block-end-24`
         const headText = document.createElement('h3')

@@ -202,15 +202,18 @@ function gameLogicPVC() {
     if (gameboard.p2.playerTurn === false) {
         gameField.setAttribute('data-turn', gameboard.p1.symbol)
         turnImg.setAttribute('data-turn', gameboard.p1.symbol)
+
         this.classList.add(`${gameboard.p1.symbol}-marker`)
         gameboard.p2.playerTurn = true
         gameboard.p1.playerTurn = false
         gameboard.p2.cpuMove()
+        renderWinner(gameboard.p1)
     } else {
         gameboard.p2.cpuMove()
         gameboard.p1.playerTurn = true
+        renderWinner(gameboard.p2)
     }
-    renderWinner()
+
     renderDraw()
 }
 
@@ -237,7 +240,6 @@ function gameLogicPVP() {
     }
 
     renderDraw()
-    console.log(gameboard.p1.playerTurn)
 }
 
 function gameStart() {
@@ -249,12 +251,15 @@ function gameStart() {
         if (gameboard.p2.playerTurn === true) {
             gameboard.p2.cpuMove()
         }
+
         tiles.forEach((tile) => {
-            tile.addEventListener('click', gameLogicPVC)
+            tile.removeEventListener('click', gameLogicPVP, true)
+            tile.addEventListener('click', gameLogicPVC, true)
         })
     } else {
         tiles.forEach((tile) => {
-            tile.addEventListener('click', gameLogicPVP)
+            tile.removeEventListener('click', gameLogicPVC, true)
+            tile.addEventListener('click', gameLogicPVP, true)
         })
     }
 }
