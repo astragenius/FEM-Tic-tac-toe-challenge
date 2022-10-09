@@ -48,6 +48,7 @@ let dataTied = {
     },
     btnSec1Function: function () {
         GameBoard.resetGameBoard()
+        gameStart()
     },
 }
 let dataPlayerXWin = {
@@ -67,6 +68,7 @@ let dataPlayerXWin = {
     },
     btnSec1Function: function () {
         GameBoard.resetGameBoard()
+        gameStart()
     },
 }
 let dataPlayerXlose = {
@@ -96,6 +98,7 @@ let dataPlayerOWin = {
     },
     btnSec1Function: function () {
         GameBoard.resetGameBoard()
+        gameStart()
     },
 }
 let dataPlayerOlose = {
@@ -179,15 +182,26 @@ function renderWinner(player) {
         showModal(dataPlayerXWin, player)
         gameboard.addPointsP1()
         gameboard.renderPoints()
-        gameboard.p1.playerTurn = true
-        gameboard.p2.playerTurn = false
+        if (gameboard.p1.getSymbol() === 'X') {
+            gameboard.p1.playerTurn = true
+            gameboard.p2.playerTurn = false
+        } else {
+            gameboard.p1.playerTurn = false
+            gameboard.p2.playerTurn = true
+        }
     } else if (gameboard.checkWinner('O-marker') === true) {
         modal.newState(dataPlayerOWin, player)
         showModal(dataPlayerOWin, player)
         gameboard.addPointsP2()
         gameboard.renderPoints()
-        gameboard.p1.playerTurn = true
-        gameboard.p2.playerTurn = false
+
+        if (gameboard.p1.getSymbol() === 'X') {
+            gameboard.p1.playerTurn = true
+            gameboard.p2.playerTurn = false
+        } else {
+            gameboard.p1.playerTurn = false
+            gameboard.p2.playerTurn = true
+        }
     }
 }
 function reloadBtn() {
@@ -206,11 +220,13 @@ function gameLogicPVC() {
         this.classList.add(`${gameboard.p1.symbol}-marker`)
         gameboard.p2.playerTurn = true
         gameboard.p1.playerTurn = false
+
         gameboard.p2.cpuMove()
         renderWinner(gameboard.p1)
     } else {
         gameboard.p2.cpuMove()
         gameboard.p1.playerTurn = true
+        gameboard.p2.playerTurn = false
         renderWinner(gameboard.p2)
     }
 
