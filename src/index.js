@@ -188,7 +188,6 @@ export function renderWinner(player) {
             gameboard.p2.playerTurn = true
         }
     } else if (gameboard.checkWinner('O-marker') === true) {
-        console.log(player)
         modal.newState(dataPlayerOWin, player)
         showModal(dataPlayerOWin, player)
         gameboard.addPointsP2()
@@ -212,26 +211,20 @@ function gameLogicPVC() {
     const gameField = document.querySelector('.game-field')
     const turnImg = document.querySelector('.player-turn-symbol')
 
-    if (gameboard.p2.playerTurn === false) {
-        gameField.setAttribute('data-turn', gameboard.p1.symbol)
-        turnImg.setAttribute('data-turn', gameboard.p1.symbol)
-
+    if (gameboard.p1.playerTurn === true) {
+        console.log(gameboard.p1.playerTurn)
+        turnImg.setAttribute('data-turn', gameboard.p2.symbol)
         this.classList.add(`${gameboard.p1.symbol}-marker`)
-        gameboard.p2.playerTurn = true
+        gameField.setAttribute('data-turn', gameboard.p1.symbol)
         gameboard.p1.playerTurn = false
-
         gameboard.p2.cpuMove()
-
-        renderWinner(gameboard.p1)
     } else {
+        console.log(gameboard.p1.playerTurn)
+        turnImg.setAttribute('data-turn', gameboard.p1.symbol)
         gameboard.p2.cpuMove()
+        gameField.setAttribute('data-turn', gameboard.p2.symbol)
         gameboard.p1.playerTurn = true
-        gameboard.p2.playerTurn = false
-
-        renderWinner(gameboard.p2)
     }
-
-    renderDraw()
 }
 
 function gameLogicPVP() {
@@ -241,7 +234,7 @@ function gameLogicPVP() {
     if (gameboard.p2.playerTurn === false) {
         turnImg.setAttribute('data-turn', gameboard.p1.symbol)
 
-        this.classList.add(`${gameboard.p1.symbol}-marker`)
+        console.log(this.classList.add(`${gameboard.p1.symbol}-marker`))
         gameField.setAttribute('data-turn', gameboard.p2.symbol)
 
         gameboard.p2.playerTurn = true
@@ -266,6 +259,7 @@ function gameStart() {
 
     if (gameboard.p2.getPlayer() === 'CPU') {
         if (gameboard.p2.playerTurn === true) {
+            gameboard.p1.playerTurn = true
             gameboard.p2.cpuMove()
         }
 

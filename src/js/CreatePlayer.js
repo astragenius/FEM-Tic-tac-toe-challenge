@@ -49,12 +49,9 @@ export class CPU extends Player {
                 return
             }
 
+            //gameField.setAttribute('data-turn', self.symbol)
             filteredTiles[index].classList.add(`${self.symbol}-marker`)
-            self.playerTurn = false
-
-            renderWinner(self)
-            gameField.setAttribute('data-turn', oponent)
-            turnImg.setAttribute('data-turn', oponent)
+            //turnImg.setAttribute('data-turn', oponent)
 
             if (oponent === 'X') {
                 turnImg.src = XSymbol
@@ -73,5 +70,7 @@ export class CPU extends Player {
         let tilesLength = filteredTiles.length
         let randomTile = randomNumber(tilesLength)
         setSymbol(randomTile)
+
+        return
     }
 }
