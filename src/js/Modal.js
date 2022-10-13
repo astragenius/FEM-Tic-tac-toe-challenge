@@ -1,7 +1,7 @@
 export class Modal {
     constructor(props, player = '') {
         this.state = {
-            //playerText: props.playerText,
+            playerText: props.playerText,
             headText: props.headText,
             playerSymbol: props.playerSymbol,
             btnText1: props.btnText1,
@@ -51,7 +51,7 @@ export class Modal {
         const playerText = document.createElement('p')
         playerText.className += playerTextStyle
         if (this.player.player === '') {
-            playerText.textContent = ``
+            playerText.textContent = ''
         } else if (this.player.player === 'YOU') {
             playerText.textContent = `${this.player.player} won!`
         } else if (this.player.player === 'CPU') {
@@ -64,6 +64,7 @@ export class Modal {
         const headText = document.createElement('h3')
         headText.className += headTextStyle
         headText.setAttribute('data-winner', this.player.symbol)
+
         headText.textContent = this.state.headText
 
         const buttonContainer = document.createElement('div')

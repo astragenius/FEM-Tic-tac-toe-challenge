@@ -51,6 +51,25 @@ let dataTied = {
         gameStart()
     },
 }
+let dataWin = {
+    playerText: '',
+    headText: '',
+    btnText1: 'quit',
+    btnText2: 'next round',
+    closeFunc: function () {
+        const modalContainer = document.querySelector('.modal-container')
+        //GameBoard.resetGameBoard()
+        modalContainer.setAttribute('data-modal-active', false)
+        const toggle = document.querySelector('.game-menu')
+        const board = document.querySelector('.game-board')
+        toggle.setAttribute('data-toggle', true)
+        board.setAttribute('data-game-board', false)
+    },
+    btnSec1Function: function () {
+        GameBoard.resetGameBoard()
+        gameStart()
+    },
+}
 let dataPlayerXWin = {
     playerText: 'you won!',
     headText: 'takes the round',
@@ -58,7 +77,7 @@ let dataPlayerXWin = {
     btnText2: 'next round',
     closeFunc: function () {
         const modalContainer = document.querySelector('.modal-container')
-        GameBoard.resetGameBoard()
+        //GameBoard.resetGameBoard()
         modalContainer.setAttribute('data-modal-active', false)
         const toggle = document.querySelector('.game-menu')
         const board = document.querySelector('.game-board')
@@ -176,10 +195,11 @@ function renderDraw() {
 }
 export function renderWinner(player) {
     if (gameboard.checkWinner('X-marker') === true) {
-        modal.newState(dataPlayerXWin, player)
-        showModal(dataPlayerXWin, player)
+        modal.newState(dataWin, player)
+        showModal(dataWin, player)
         gameboard.addPointsP1()
         gameboard.renderPoints()
+        //PlayerTurn reset after win
         if (gameboard.p1.getSymbol() === 'X') {
             gameboard.p1.playerTurn = true
             gameboard.p2.playerTurn = false
@@ -188,10 +208,12 @@ export function renderWinner(player) {
             gameboard.p2.playerTurn = true
         }
     } else if (gameboard.checkWinner('O-marker') === true) {
-        modal.newState(dataPlayerOWin, player)
-        showModal(dataPlayerOWin, player)
+        modal.newState(dataWin, player)
+        showModal(dataWin, player)
         gameboard.addPointsP2()
         gameboard.renderPoints()
+
+        //playerTurn reset after win
 
         if (gameboard.p1.getSymbol() === 'X') {
             gameboard.p1.playerTurn = true
@@ -212,6 +234,7 @@ function gameLogicPVC() {
     const turnImg = document.querySelector('.player-turn-symbol')
 
     this.classList.add(`${gameboard.p1.symbol}-marker`)
+    renderWinner(gameboard.p1)
     if (gameboard.p1.playerTurn === true) {
         turnImg.setAttribute('data-turn', gameboard.p2.symbol)
 
@@ -219,7 +242,6 @@ function gameLogicPVC() {
         gameboard.p1.playerTurn = false
         gameboard.p2.playerTurn = true
         gameboard.p2.cpuMove()
-        renderWinner(gameboard.p1)
     } else {
         gameboard.p2.cpuMove()
 
