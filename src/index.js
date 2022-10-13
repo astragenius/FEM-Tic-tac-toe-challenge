@@ -211,20 +211,23 @@ function gameLogicPVC() {
     const gameField = document.querySelector('.game-field')
     const turnImg = document.querySelector('.player-turn-symbol')
 
+    this.classList.add(`${gameboard.p1.symbol}-marker`)
     if (gameboard.p1.playerTurn === true) {
-        console.log(gameboard.p1.playerTurn)
         turnImg.setAttribute('data-turn', gameboard.p2.symbol)
-        this.classList.add(`${gameboard.p1.symbol}-marker`)
+
         gameField.setAttribute('data-turn', gameboard.p1.symbol)
         gameboard.p1.playerTurn = false
+        gameboard.p2.playerTurn = true
         gameboard.p2.cpuMove()
+        renderWinner(gameboard.p1)
     } else {
-        console.log(gameboard.p1.playerTurn)
-        turnImg.setAttribute('data-turn', gameboard.p1.symbol)
         gameboard.p2.cpuMove()
-        gameField.setAttribute('data-turn', gameboard.p2.symbol)
+
         gameboard.p1.playerTurn = true
+        gameboard.p2.playerTurn = false
+        renderWinner(gameboard.p2)
     }
+    renderDraw()
 }
 
 function gameLogicPVP() {
@@ -260,6 +263,7 @@ function gameStart() {
     if (gameboard.p2.getPlayer() === 'CPU') {
         if (gameboard.p2.playerTurn === true) {
             gameboard.p1.playerTurn = true
+            gameboard.p2.playerTurn = false
             gameboard.p2.cpuMove()
         }
 
