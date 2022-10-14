@@ -195,6 +195,7 @@ function renderDraw() {
 }
 export function renderWinner(player) {
     if (gameboard.checkWinner('X-marker') === true) {
+        console.log('X-winns', player)
         modal.newState(dataWin, player)
         showModal(dataWin, player)
         gameboard.addPointsP1()
@@ -208,6 +209,7 @@ export function renderWinner(player) {
             gameboard.p2.playerTurn = true
         }
     } else if (gameboard.checkWinner('O-marker') === true) {
+        console.log('O-winns', player)
         modal.newState(dataWin, player)
         showModal(dataWin, player)
         gameboard.addPointsP2()
@@ -234,7 +236,7 @@ function gameLogicPVC() {
     const turnImg = document.querySelector('.player-turn-symbol')
 
     this.classList.add(`${gameboard.p1.symbol}-marker`)
-    renderWinner(gameboard.p1)
+
     if (gameboard.p1.playerTurn === true) {
         turnImg.setAttribute('data-turn', gameboard.p2.symbol)
 
@@ -242,6 +244,7 @@ function gameLogicPVC() {
         gameboard.p1.playerTurn = false
         gameboard.p2.playerTurn = true
         gameboard.p2.cpuMove()
+        renderWinner(gameboard.p1)
     } else {
         gameboard.p2.cpuMove()
 

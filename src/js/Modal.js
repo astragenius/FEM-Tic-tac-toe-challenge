@@ -56,6 +56,10 @@ export class Modal {
             playerText.textContent = `${this.player.player} won!`
         } else if (this.player.player === 'CPU') {
             playerText.textContent = `Oh no, you lost...`
+        } else if (this.state.headText === 'Round tied') {
+            playerText.textContent = ''
+        } else if (this.state.headText === 'restart game?') {
+            playerText.textContent = ''
         } else {
             playerText.textContent = `${this.player.player} winns!`
         }
@@ -65,7 +69,12 @@ export class Modal {
         headText.className += headTextStyle
         headText.setAttribute('data-winner', this.player.symbol)
 
-        headText.textContent = this.state.headText
+        if (this.player.symbol === 'O' || this.player.symbol === 'X') {
+            headText.textContent = 'takes the round'
+        } else {
+            headText.textContent = this.state.headText
+            headText.setAttribute('data-winner', this.state.playerSymbol)
+        }
 
         const buttonContainer = document.createElement('div')
         buttonContainer.classList.add('modal-button-container')
