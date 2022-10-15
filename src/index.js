@@ -70,68 +70,6 @@ let dataWin = {
         gameStart()
     },
 }
-let dataPlayerXWin = {
-    playerText: 'you won!',
-    headText: 'takes the round',
-    btnText1: 'quit',
-    btnText2: 'next round',
-    closeFunc: function () {
-        const modalContainer = document.querySelector('.modal-container')
-        //GameBoard.resetGameBoard()
-        modalContainer.setAttribute('data-modal-active', false)
-        const toggle = document.querySelector('.game-menu')
-        const board = document.querySelector('.game-board')
-        toggle.setAttribute('data-toggle', true)
-        board.setAttribute('data-game-board', false)
-    },
-    btnSec1Function: function () {
-        GameBoard.resetGameBoard()
-        gameStart()
-    },
-}
-let dataPlayerXlose = {
-    playerText: 'oh no you lose..',
-    headText: 'takes the round',
-    btnText1: 'quit',
-    btnText2: 'next round',
-    closeFunc: function () {
-        const modalContainer = document.querySelector('.modal-container')
-        modalContainer.setAttribute('data-modal-active', false)
-    },
-    btnSec1Function: function () {
-        GameBoard.resetGameBoard()
-        gameStart()
-    },
-}
-let dataPlayerOWin = {
-    playerText: 'Player 2 wins',
-    headText: 'takes the round',
-
-    btnText1: 'quit',
-    btnText2: 'next round',
-    closeFunc: function () {
-        const modalContainer = document.querySelector('.modal-container')
-        modalContainer.setAttribute('data-modal-active', false)
-    },
-    btnSec1Function: function () {
-        GameBoard.resetGameBoard()
-        gameStart()
-    },
-}
-let dataPlayerOlose = {
-    playerText: 'Player 1 wins',
-    headText: 'takes the round',
-
-    btnText1: 'quit',
-    btnText2: 'next round',
-    closeFunc: function () {
-        const modalContainer = document.querySelector('.modal-container')
-        modalContainer.setAttribute('data-modal-active', false)
-    },
-    btnSec1Function: function () {
-        GameBoard.resetGameBoard()
-    },
-}
 
 const modal = new Modal(dataRestart)
 
@@ -272,7 +210,7 @@ function gameLogicPVP() {
         gameField.setAttribute('data-turn', gameboard.p2.symbol)
 
         turnImg.src = gameboard.p1.symbol === 'X' ? OSymbol : xSymbol
-        console.log(turnImg.src)
+
         gameboard.p2.playerTurn = true
         gameboard.p1.playerTurn = false
         renderWinner(gameboard.p1)
@@ -281,7 +219,7 @@ function gameLogicPVP() {
         this.classList.add(`${gameboard.p2.symbol}-marker`)
         gameField.setAttribute('data-turn', gameboard.p1.symbol)
         turnImg.src = gameboard.p2.symbol === 'X' ? OSymbol : xSymbol
-        console.log(turnImg.src)
+
         gameboard.p1.playerTurn = true
         gameboard.p2.playerTurn = false
         renderWinner(gameboard.p2)
@@ -297,7 +235,6 @@ function gameStart() {
 
     if (gameboard.p2.getPlayer() === 'CPU') {
         if (gameboard.p2.symbol === 'X') {
-            //console.log(gameboard.p2.playerTurn)
             gameboard.p1.playerTurn = true
             gameboard.p2.playerTurn = false
             gameboard.p2.cpuMove()
