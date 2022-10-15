@@ -40,6 +40,7 @@ export class CPU extends Player {
         const tiles = [...document.querySelectorAll('.game-tile')]
         const turnImg = document.querySelector('.player-turn-symbol')
         const gameField = document.querySelector('.game-field')
+        pointerEvents('none')
 
         function randomNumber(num) {
             return Math.floor(Math.random() * num)
@@ -52,12 +53,8 @@ export class CPU extends Player {
             turnImg.setAttribute('data-turn', oponent)
             filteredTiles[index].classList.add(`${self.symbol}-marker`)
             gameField.setAttribute('data-turn', oponent)
-            console.log(oponent)
-            if (oponent === 'X') {
-                turnImg.src = XSymbol
-            } else {
-                turnImg.src = OSymbol
-            }
+
+            turnImg.src = self.symbol === 'X' ? OSymbol : XSymbol
         }
 
         const filteredTiles = tiles.filter((tile) => {
@@ -67,9 +64,19 @@ export class CPU extends Player {
             )
         })
 
+        function pointerEvents(trigger) {
+            tiles.forEach((tile) => {
+                tile.style.pointerEvents = trigger
+            })
+        }
+
         let tilesLength = filteredTiles.length
         let randomTile = randomNumber(tilesLength)
-        setSymbol(randomTile)
+        setTimeout(() => {
+            setSymbol(randomTile)
+            pointerEvents('')
+            renderWinner(self)
+        }, 1000)
 
         return
     }

@@ -58,7 +58,7 @@ let dataWin = {
     btnText2: 'next round',
     closeFunc: function () {
         const modalContainer = document.querySelector('.modal-container')
-        //GameBoard.resetGameBoard()
+        GameBoard.resetGameBoard()
         modalContainer.setAttribute('data-modal-active', false)
         const toggle = document.querySelector('.game-menu')
         const board = document.querySelector('.game-board')
@@ -236,6 +236,7 @@ function gameLogicPVC() {
     const turnImg = document.querySelector('.player-turn-symbol')
 
     this.classList.add(`${gameboard.p1.symbol}-marker`)
+    turnImg.src = gameboard.p1.symbol === 'X' ? OSymbol : xSymbol
 
     if (
         gameboard.p1.playerTurn === true &&
@@ -243,6 +244,7 @@ function gameLogicPVC() {
     ) {
         turnImg.setAttribute('data-turn', gameboard.p2.symbol)
         gameField.setAttribute('data-turn', gameboard.p1.symbol)
+
         renderWinner(gameboard.p1)
         gameboard.p1.playerTurn = false
         gameboard.p2.playerTurn = true
@@ -294,7 +296,8 @@ function gameStart() {
     reloadBtn()
 
     if (gameboard.p2.getPlayer() === 'CPU') {
-        if (gameboard.p2.playerTurn === true) {
+        if (gameboard.p2.symbol === 'X') {
+            //console.log(gameboard.p2.playerTurn)
             gameboard.p1.playerTurn = true
             gameboard.p2.playerTurn = false
             gameboard.p2.cpuMove()
