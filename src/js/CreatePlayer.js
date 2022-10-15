@@ -52,7 +52,7 @@ export class CPU extends Player {
             turnImg.setAttribute('data-turn', oponent)
             filteredTiles[index].classList.add(`${self.symbol}-marker`)
             gameField.setAttribute('data-turn', oponent)
-
+            console.log(oponent)
             if (oponent === 'X') {
                 turnImg.src = XSymbol
             } else {

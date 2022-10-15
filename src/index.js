@@ -266,9 +266,11 @@ function gameLogicPVP() {
     if (gameboard.p2.playerTurn === false) {
         turnImg.setAttribute('data-turn', gameboard.p1.symbol)
 
-        console.log(this.classList.add(`${gameboard.p1.symbol}-marker`))
+        this.classList.add(`${gameboard.p1.symbol}-marker`)
         gameField.setAttribute('data-turn', gameboard.p2.symbol)
 
+        turnImg.src = gameboard.p1.symbol === 'X' ? OSymbol : xSymbol
+        console.log(turnImg.src)
         gameboard.p2.playerTurn = true
         gameboard.p1.playerTurn = false
         renderWinner(gameboard.p1)
@@ -276,6 +278,8 @@ function gameLogicPVP() {
         turnImg.setAttribute('data-turn', gameboard.p2.symbol)
         this.classList.add(`${gameboard.p2.symbol}-marker`)
         gameField.setAttribute('data-turn', gameboard.p1.symbol)
+        turnImg.src = gameboard.p2.symbol === 'X' ? OSymbol : xSymbol
+        console.log(turnImg.src)
         gameboard.p1.playerTurn = true
         gameboard.p2.playerTurn = false
         renderWinner(gameboard.p2)
