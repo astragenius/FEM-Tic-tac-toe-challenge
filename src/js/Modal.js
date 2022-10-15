@@ -1,3 +1,5 @@
+import { animateCSS } from './Animation'
+
 export class Modal {
     constructor(props, player = '') {
         this.state = {

@@ -2,9 +2,21 @@
     display: none;
 }
 
+.fadeOut {
+    -webkit-animation-name: fadeOut;
+            animation-name: fadeOut;
+    -webkit-animation-duration: 500ms;
+            animation-duration: 500ms;
+
+}
+
 [data-modal-active="true"] {
 
     display: grid;
+   -webkit-animation-name: fadeIn;
+           animation-name: fadeIn;
+   -webkit-animation-duration: 500ms;
+           animation-duration: 500ms;
 }
 
 
@@ -73,3 +85,42 @@
     gap: 2em;
     
 }
+
+@-webkit-keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+  
+    to {
+      opacity: 1;
+    }
+  }
+
+
+  @-webkit-keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+  
+    to {
+      opacity: 0;
+    }
+  }
+  @keyframes fadeOut {
+    from {
+      opacity: 1;
+    }
+  
+    to {
+      opacity: 0;
+    }
+  }

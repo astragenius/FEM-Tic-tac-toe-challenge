@@ -6,6 +6,10 @@
 
 .game-board[data-game-board="true"] {
     display: grid;
+    -webkit-animation-name: fadeIn;
+            animation-name: fadeIn;
+    -webkit-animation-duration: 300ms;
+            animation-duration: 300ms;
 }
 
 

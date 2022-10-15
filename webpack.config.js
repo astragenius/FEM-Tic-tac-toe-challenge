@@ -40,9 +40,9 @@ module.exports = {
             template: './src/template.html',
         }),
         new MiniCssExtractPlugin(),
-        new PurgecssPlugin({
-            paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
-        }),
+        //new PurgecssPlugin({
+        //paths: glob.sync(`${PATHS.src}/**/*`, { nodir: true }),
+        //}),
     ],
 
     module: {

@@ -1,4 +1,5 @@
 import './scss/index.scss'
+
 import './assets/img/icon-restart.svg'
 import logoImg from './assets/img/logo.svg'
 import xSymbol from './assets/img/toggle-x.svg'
@@ -7,6 +8,7 @@ import { Modal } from './js/Modal'
 import { CPU, Player } from './js/CreatePlayer'
 import { StartToggle } from './js/StartToggle'
 import { GameBoard } from './js/GameBoard'
+import { animateCSS } from './js/Animation'
 
 const headerTurn = document.querySelector('.player-turn-symbol')
 const gameBoardLogo = document.querySelector('.game-board-logo')
