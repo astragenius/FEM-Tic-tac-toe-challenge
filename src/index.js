@@ -237,14 +237,18 @@ function gameLogicPVC() {
 
     this.classList.add(`${gameboard.p1.symbol}-marker`)
 
-    if (gameboard.p1.playerTurn === true) {
+    if (
+        gameboard.p1.playerTurn === true &&
+        gameboard.checkWinner(`${gameboard.p1.symbol}-marker`)
+    ) {
         turnImg.setAttribute('data-turn', gameboard.p2.symbol)
-
         gameField.setAttribute('data-turn', gameboard.p1.symbol)
+        renderWinner(gameboard.p1)
         gameboard.p1.playerTurn = false
         gameboard.p2.playerTurn = true
-        gameboard.p2.cpuMove()
-        renderWinner(gameboard.p1)
+        if (!gameboard.checkWinner(`${gameboard.p1.symbol}-marker`)) {
+            gameboard.p2.cpuMove()
+        }
     } else {
         gameboard.p2.cpuMove()
 
