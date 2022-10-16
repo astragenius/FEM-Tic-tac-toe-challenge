@@ -1,6 +1,12 @@
 .game-menu[data-toggle="false"] {
     display: none;
 }
+.game-menu[data-toggle="true"] {
+    -webkit-animation-name: fadeIn;
+            animation-name: fadeIn;
+    -webkit-animation-duration: 300ms;
+            animation-duration: 300ms;
+}
 .toggle-wrapper {
         
         display: flex;
