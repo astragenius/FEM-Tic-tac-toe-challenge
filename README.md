@@ -118,7 +118,8 @@
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
-## Acknowledgments
+
+## Acknowledgment
 
 #### Checkbox Custom Design with CSS
 
