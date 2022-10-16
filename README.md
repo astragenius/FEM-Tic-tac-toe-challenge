@@ -94,6 +94,11 @@
 ## Feature's
 
 - [x] App layout optimized for Mobile(375px), Tablet(768px) and Desktop(1440px)
+- [x] You can play solo against the Computer
+- [x] You can play in multiplayer against another person
+- [x] You can choose the symbols before you start the game
+- [x] Different modal states for each player and symbol
+
 
 
     
@@ -113,10 +118,49 @@
 
 
 <p align="right">(<a href="#top">back to top</a>)</p>
+## Acknowledgments
+
+#### Checkbox Custom Design with CSS
+
+For this Toggle-switch I have used the "input" element
+
+You can't style the default checkbox itself with CSS. That's why the actual switch get styled with the pseudo element ":before" and ":after".
+
+First, we set the checkbox "position: absolute" so we get the checkbox out of the document flow.
+
+Afterward, we set the width and height to 100% so that the checkbox occupies the entire space of the container.
+With "appearance: none" we don't see the checkbox anymore, but we can still interact with the checkbox. In contrast, with "display: none" you can't interact with the element anymore. 
+
+```scss
+
+.checkbox {
+    display: block;
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+
+```
 
 
+#### Changing SVG fill color by clicking the Toggle
 
+```scss
+.checkbox:checked  ~ .toggle-symbol-o .fill-symbol-o {
+    fill: #A8BFC9;
+}
 
+.checkbox:checked ~ .toggle-symbol-x .fill-symbol-x {
+    fill: #1A2A33;
+}
+```
+
+![screenshot](/DOC/animation/fem-toggle-switch-finished.gif)
 
 
 
